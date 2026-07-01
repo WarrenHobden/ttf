@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TTF — prototype" />
+  <title>TTF Prototype</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/">TTF</a>
+      <nav class="nav">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <h1>TTF Prototype</h1>
+      <p class="lede">A shareable prototype — no build step, just open and edit.</p>
+      <button id="cta" class="btn">Try it</button>
+      <p id="output" class="output" aria-live="polite"></p>
+    </section>
+
+    <section id="features" class="container">
+      <h2>Features</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Zero build</h3>
+          <p>Plain HTML, CSS, and JS. Edit a file, refresh the browser.</p>
+        </article>
+        <article class="card">
+          <h3>Shareable</h3>
+          <p>Push to GitHub and it auto-deploys to a live URL.</p>
+        </article>
+        <article class="card">
+          <h3>Organized</h3>
+          <p>Clear folders for styles, scripts, and assets to grow into.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="container">
+      <h2>About</h2>
+      <p>Replace this scaffold with your prototype. Structure and deploy config are ready to go.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> TTF</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" type="module"></script>
+</body>
+</html>
