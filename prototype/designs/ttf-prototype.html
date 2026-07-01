@@ -124,45 +124,6 @@
            lets reviewers jump between pages quickly. Real
            in-page links also navigate between pages.
            =========================================== */
-        .proto-bar {
-            background: var(--frank-grey-900);
-            color: var(--frank-white);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .proto-bar-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: var(--space-sm) var(--space-md);
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-sm);
-            align-items: center;
-        }
-        .proto-bar-label {
-            color: var(--frank-grey-300);
-            font-size: 13px;
-            font-weight: 600;
-            margin-right: var(--space-sm);
-        }
-        .proto-btn {
-            background: transparent;
-            border: 2px solid var(--frank-grey-700);
-            color: var(--frank-white);
-            padding: 6px 14px;
-            font-family: var(--font-stack);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: border-color 0.15s ease, background 0.15s ease;
-        }
-        .proto-btn:hover { border-color: var(--frank-grey-300); }
-        .proto-btn.active {
-            background: var(--frank-pink);
-            border-color: var(--frank-pink);
-        }
-
         /* ===========================================
            PAGE ROUTING
            One page visible at a time.
@@ -179,7 +140,7 @@
             background: var(--frank-white);
             border-bottom: 1px solid var(--frank-grey-200);
             position: sticky;
-            top: 41px; /* below proto-bar */
+            top: 0;
             z-index: 90;
         }
         .frank-header-inner {
@@ -1026,19 +987,6 @@
     <a href="#main" class="skip-link">Skip to main content</a>
 
     <!-- ===========================================
-         PROTOTYPE BAR (review-only)
-         =========================================== -->
-    <nav class="proto-bar" aria-label="Prototype page selection">
-        <div class="proto-bar-inner">
-            <span class="proto-bar-label">Prototype — jump to page:</span>
-            <button class="proto-btn active" data-page="home" aria-current="page">Homepage</button>
-            <button class="proto-btn" data-page="drug">Drug page</button>
-            <button class="proto-btn" data-page="emergency">Emergency</button>
-            <button class="proto-btn" data-page="unavailable">Service unavailable</button>
-        </div>
-    </nav>
-
-    <!-- ===========================================
          PAGE: HOMEPAGE (hybrid search + browse)
          =========================================== -->
     <div class="page active" id="page-home">
@@ -1841,33 +1789,17 @@
                 emergency: document.getElementById('page-emergency'),
                 unavailable: document.getElementById('page-unavailable')
             };
-            var protoBtns = document.querySelectorAll('.proto-btn');
 
             function showPage(name) {
                 if (!pages[name]) name = 'home';
                 Object.keys(pages).forEach(function (key) {
                     pages[key].classList.toggle('active', key === name);
                 });
-                protoBtns.forEach(function (b) {
-                    var on = b.dataset.page === name;
-                    b.classList.toggle('active', on);
-                    if (on) { b.setAttribute('aria-current', 'page'); }
-                    else { b.removeAttribute('aria-current'); }
-                });
                 // Close any open mobile menus on navigation
                 document.querySelectorAll('.frank-mobile-nav.open').forEach(function (m) { m.classList.remove('open'); });
                 document.querySelectorAll('.frank-menu-toggle').forEach(function (t) { t.setAttribute('aria-expanded', 'false'); });
                 window.scrollTo({ top: 0, behavior: 'auto' });
             }
-
-            // Prototype bar
-            protoBtns.forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    var name = btn.dataset.page;
-                    showPage(name);
-                    history.replaceState(null, '', '#' + name);
-                });
-            });
 
             // In-page navigation links (logo, emergency links, breadcrumb, footer)
             document.querySelectorAll('[data-nav]').forEach(function (link) {

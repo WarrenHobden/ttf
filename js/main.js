@@ -5,33 +5,16 @@
                 emergency: document.getElementById('page-emergency'),
                 unavailable: document.getElementById('page-unavailable')
             };
-            var protoBtns = document.querySelectorAll('.proto-btn');
-
             function showPage(name) {
                 if (!pages[name]) name = 'home';
                 Object.keys(pages).forEach(function (key) {
                     pages[key].classList.toggle('active', key === name);
-                });
-                protoBtns.forEach(function (b) {
-                    var on = b.dataset.page === name;
-                    b.classList.toggle('active', on);
-                    if (on) { b.setAttribute('aria-current', 'page'); }
-                    else { b.removeAttribute('aria-current'); }
                 });
                 // Close any open mobile menus on navigation
                 document.querySelectorAll('.frank-mobile-nav.open').forEach(function (m) { m.classList.remove('open'); });
                 document.querySelectorAll('.frank-menu-toggle').forEach(function (t) { t.setAttribute('aria-expanded', 'false'); });
                 window.scrollTo({ top: 0, behavior: 'auto' });
             }
-
-            // Prototype bar
-            protoBtns.forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    var name = btn.dataset.page;
-                    showPage(name);
-                    history.replaceState(null, '', '#' + name);
-                });
-            });
 
             // In-page navigation links (logo, emergency links, breadcrumb, footer)
             document.querySelectorAll('[data-nav]').forEach(function (link) {

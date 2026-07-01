@@ -140,45 +140,6 @@
            lets reviewers jump between pages quickly. Real
            in-page links also navigate between pages.
            =========================================== */
-        .proto-bar {
-            background: var(--frank-grey-900);
-            color: var(--frank-white);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .proto-bar-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: var(--space-sm) var(--space-md);
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-sm);
-            align-items: center;
-        }
-        .proto-bar-label {
-            color: var(--frank-grey-300);
-            font-size: 13px;
-            font-weight: 600;
-            margin-right: var(--space-sm);
-        }
-        .proto-btn {
-            background: transparent;
-            border: 2px solid var(--frank-grey-700);
-            color: var(--frank-white);
-            padding: 6px 14px;
-            font-family: var(--font-body);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: border-color 0.15s ease, background 0.15s ease;
-        }
-        .proto-btn:hover { border-color: var(--frank-grey-300); }
-        .proto-btn.active {
-            background: var(--frank-pink);
-            border-color: var(--frank-pink);
-        }
-
         /* ===========================================
            PAGE ROUTING
            One page visible at a time.
@@ -195,7 +156,7 @@
             background: var(--frank-white);
             border-bottom: 1px solid var(--frank-grey-200);
             position: sticky;
-            top: 41px; /* below proto-bar */
+            top: 0;
             z-index: 90;
         }
         .frank-header-inner {

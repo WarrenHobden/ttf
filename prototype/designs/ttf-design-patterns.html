@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talk to FRANK · Design patterns · Colour &amp; core components</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,900;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+/* ================================================================
+   TALK TO FRANK · DESIGN PATTERNS
+   Palette sourced from the live service CSS + rendered usage.
+   Every contrast figure verified against WCAG 2.2 (relative
+   luminance / (L1+0.05)/(L2+0.05)).
+   ================================================================ */
+:root{
+  /* BRAND / PRIMARY */
+  --frank-blue:      #0072EE;
+  --deep-teal:       #0E3944;
+  --teal:            #235461;
+
+  /* ACCENTS */
+  --pink:            #FC016A;    /* display / fills only */
+  --pink-text:       #D10058;    /* the pink that carries text + links */
+  --green:           #78FF74;
+  --yellow:          #F2C94C;
+  --indigo:          #6610F2;
+  --purple:          #CA24C2;
+  --cyan:            #17A2B8;
+  --orange:          #FD7E14;
+  --red:             #DC3545;
+
+  /* INK / NEUTRALS */
+  --ink:             #0B0C0C;
+  --ink-true:        #000000;
+  --body:            #4A4A4A;
+  --mid:             #767676;
+  --gray-dark:       #343A40;
+  --line:            #ADB5BD;
+
+  /* SURFACES */
+  --white:           #FFFFFF;
+  --light:           #F0F4F5;
+  --pink-tint:       #FFEEF5;
+
+  /* DOC-LOCAL rules */
+  --rule-dark:       rgba(255,255,255,0.14);
+  --rule-light:      #D8DEE0;
+  --rule-white:      #E5E9EA;
+
+  --font:  'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono:  'JetBrains Mono', ui-monospace, monospace;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  font-family:var(--font);
+  font-size:16px; line-height:1.55;
+  background:var(--light);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+.page{ max-width:1240px; margin:0 auto; padding:0 40px; }
+.hide{ position:absolute; width:0; height:0; overflow:hidden; }
+
+/* ================================================================
+   COVER
+   ================================================================ */
+.cover{
+  --logo-dot:var(--deep-teal);
+  background:var(--deep-teal);
+  color:#fff;
+  padding:56px 40px 52px;
+  position:relative;
+  overflow:hidden;
+}
+/* signature: FRANK domino-dot halftone, echoing the wordmark */
+.cover::after{
+  content:""; position:absolute; inset:0;
+  background-image:radial-gradient(rgba(0,114,238,0.30) 1.4px, transparent 1.6px);
+  background-size:22px 22px;
+  -webkit-mask-image:linear-gradient(105deg, transparent 52%, #000 100%);
+  mask-image:linear-gradient(105deg, transparent 52%, #000 100%);
+  opacity:.7; pointer-events:none;
+}
+.cover-inner{ max-width:1240px; margin:0 auto; position:relative; z-index:1; }
+.cover-top{
+  display:flex; justify-content:space-between; align-items:flex-start;
+  font-family:var(--mono); font-size:11px; letter-spacing:.08em;
+  color:rgba(255,255,255,0.62); text-transform:uppercase;
+}
+.cover-logo{ height:34px; width:auto; color:#fff; display:block; }
+.cover h1{
+  font-size:clamp(38px,5.4vw,64px); font-weight:900; line-height:1.02;
+  letter-spacing:-0.02em; margin:56px 0 22px; max-width:20ch;
+}
+.cover h1 em{ font-style:normal; color:var(--frank-blue); }
+.cover .lede{
+  font-size:18px; line-height:1.55; color:rgba(255,255,255,0.82);
+  max-width:66ch; margin-bottom:48px;
+}
+.cover-foot{
+  border-top:1px solid var(--rule-dark); padding-top:26px;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:28px; margin-top:44px;
+}
+.cover-foot .col{ font-size:13px; line-height:1.5; color:rgba(255,255,255,0.82); }
+.cover-foot .col strong{
+  display:block; color:#fff; font-size:10px; letter-spacing:.12em;
+  text-transform:uppercase; font-weight:700; margin-bottom:7px;
+}
+
+/* ================================================================
+   SECTIONS
+   ================================================================ */
+.sec{ padding:80px 0; border-bottom:1px solid var(--rule-light); }
+.sec:last-of-type{ border-bottom:none; }
+.sec-head{
+  display:grid; grid-template-columns:auto 1fr auto; gap:28px; align-items:end;
+  margin-bottom:20px; padding-bottom:22px; border-bottom:1px solid var(--rule-light);
+}
+.sec-no{
+  font-family:var(--mono); font-size:12px; color:var(--frank-blue);
+  font-variant-numeric:tabular-nums; letter-spacing:.04em; padding-bottom:6px;
+}
+.sec-head h2{ font-size:clamp(26px,3.4vw,42px); font-weight:900; line-height:1.05; letter-spacing:-0.02em; }
+.sec-head h2 em{ font-style:normal; color:var(--frank-blue); }
+.sec-head .tag{
+  font-size:11px; letter-spacing:.11em; text-transform:uppercase; font-weight:700;
+  color:var(--mid); text-align:right; line-height:1.5;
+}
+.sec-lede{ font-size:17px; line-height:1.55; color:var(--body); max-width:72ch; margin:24px 0 40px; }
+.sec-lede em{ font-style:normal; color:var(--pink-text); font-weight:600; }
+
+/* ================================================================
+   TOKEN TABLE
+   ================================================================ */
+.tokens{ background:var(--white); border:1px solid var(--rule-white); border-radius:14px; overflow:hidden; }
+.trow{
+  display:grid; grid-template-columns:64px 248px 1fr 176px 112px;
+  align-items:center; gap:22px; padding:16px 22px; border-bottom:1px solid var(--rule-white);
+}
+.trow:last-child{ border-bottom:none; }
+.trow.head{
+  background:var(--light); font-size:10px; letter-spacing:.11em; text-transform:uppercase;
+  font-weight:700; color:var(--mid); padding:13px 22px;
+}
+.trow.divider{
+  grid-template-columns:1fr; background:var(--deep-teal); color:#fff;
+  font-size:11px; letter-spacing:.13em; text-transform:uppercase; font-weight:700; padding:11px 22px;
+}
+.trow.divider .lc{ color:rgba(255,255,255,0.62); font-weight:600; letter-spacing:.04em; text-transform:none; }
+.chip{ width:46px; height:46px; border-radius:10px; border:1px solid rgba(0,0,0,0.08); }
+.t-name{ font-family:var(--mono); font-size:13px; font-weight:500; color:var(--ink); line-height:1.4; }
+.t-name .hex{ display:block; color:var(--mid); font-size:11px; margin-top:4px; text-transform:uppercase; }
+.t-use{ font-size:13.5px; line-height:1.5; color:var(--body); }
+.t-ratio{ font-family:var(--mono); font-size:14px; font-weight:700; color:var(--ink); font-variant-numeric:tabular-nums; }
+.t-ratio small{ display:block; font-size:10px; font-weight:500; color:var(--mid); margin-top:3px; letter-spacing:.03em; }
+
+.badge{
+  display:inline-flex; align-items:center; font-size:10px; font-weight:700;
+  padding:4px 9px; border-radius:100px; letter-spacing:.06em; text-transform:uppercase;
+}
+.badge.aaa  { background:#E4F3EC; color:#0B5E3B; }
+.badge.aa   { background:#E9F5EC; color:#146C2E; }
+.badge.large{ background:#FCF3DC; color:#8A5A00; }
+.badge.fill { background:#FFEBEE; color:var(--pink-text); border:1px solid #F5B7CB; }
+.badge.deco { background:#EEF1F2; color:#5A6268; }
+
+/* ================================================================
+   CONTRAST MATRIX
+   ================================================================ */
+.matrix{ background:var(--white); border:1px solid var(--rule-white); border-radius:14px; overflow:hidden; }
+.mrow{ display:grid; grid-template-columns:1.5fr 1.2fr 108px 96px 96px; align-items:center; border-bottom:1px solid var(--rule-white); }
+.mrow:last-child{ border-bottom:none; }
+.mrow.head .mcell{ font-size:10px; letter-spacing:.11em; text-transform:uppercase; font-weight:700; color:var(--mid); background:var(--light); }
+.mcell{ padding:14px 18px; font-size:13px; color:var(--body); }
+.mcell.demo{ font-weight:700; font-size:15px; }
+.mcell.bg{ font-family:var(--mono); font-size:12px; display:flex; align-items:center; gap:10px; }
+.minichip{ width:20px; height:20px; border-radius:5px; border:1px solid rgba(0,0,0,0.12); flex:none; }
+.mcell.ratio{ font-family:var(--mono); font-weight:700; font-variant-numeric:tabular-nums; color:var(--ink); }
+
+/* ================================================================
+   APPLIED · component patterns
+   ================================================================ */
+.applied-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.demo-card{ background:var(--white); border:1px solid var(--rule-white); border-radius:16px; padding:26px; }
+.demo-card.span{ grid-column:1 / -1; }
+.demo-label{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--mid); font-weight:700; margin-bottom:16px; display:flex; justify-content:space-between;
+}
+.demo-label .ref{ color:var(--frank-blue); }
+
+/* FRANK buttons */
+.btn{
+  display:inline-flex; align-items:center; gap:8px; font-family:var(--font); font-weight:700;
+  font-size:16px; padding:13px 26px; border-radius:100px; border:2px solid transparent;
+  cursor:pointer; text-decoration:none; line-height:1;
+}
+.btn-primary{ background:var(--frank-blue); color:#fff; }
+.btn-primary:hover{ filter:brightness(0.92); }
+.btn-secondary{ background:transparent; color:var(--frank-blue); border-color:var(--frank-blue); }
+.btn-secondary:hover{ background:rgba(0,114,238,0.08); }
+.btn-emergency{ background:var(--pink-text); color:#fff; }
+.btn-emergency:hover{ filter:brightness(0.92); }
+.btn-row{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+
+/* FRANK dotted-underline links */
+.frank-link{ color:var(--frank-blue); text-decoration:underline; text-decoration-style:dotted; text-underline-offset:3px; text-decoration-thickness:1.5px; font-weight:600; }
+.frank-link:hover{ text-decoration-style:solid; }
+.prose-demo{ color:var(--body); font-size:16px; line-height:1.65; }
+
+/* emergency strip */
+.emg{ display:flex; align-items:center; gap:16px; background:var(--pink-tint); border:1px solid #F5B7CB; border-radius:12px; padding:16px 18px; }
+.emg-icon{ width:40px; height:40px; border-radius:50%; background:var(--pink-text); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:22px; flex:none; }
+.emg-body{ font-size:14.5px; color:var(--body); line-height:1.45; }
+.emg-body strong{ color:#8A0040; display:block; font-size:15px; margin-bottom:2px; }
+
+/* drug chips */
+.chips{ display:flex; flex-wrap:wrap; gap:10px; }
+.chip-pill{ background:var(--light); border:1px solid var(--rule-light); color:var(--deep-teal); border-radius:100px; padding:9px 18px; font-weight:600; font-size:15px; text-decoration:none; }
+.chip-pill:hover{ background:#E3EBED; border-color:var(--teal); }
+
+/* teal panel */
+.teal-panel{ --logo-dot:#fff; background:var(--deep-teal); color:#fff; border-radius:16px; padding:26px; }
+.teal-panel h4{ font-size:20px; font-weight:900; margin-bottom:8px; letter-spacing:-0.01em; }
+.teal-panel p{ color:rgba(255,255,255,0.82); font-size:14.5px; line-height:1.55; }
+.teal-panel .frank-link{ color:#5CB2FF; }
+
+/* ================================================================
+   CODE BLOCK
+   ================================================================ */
+.code{
+  background:var(--deep-teal); color:#DDE6EA; border-radius:14px; padding:26px 28px;
+  font-family:var(--mono); font-size:13px; line-height:1.75; overflow-x:auto; white-space:pre;
+}
+.code .c{ color:#6FA9BE; }
+.code .n{ color:#7FD0FF; }
+.code .v{ color:#FFC7DE; }
+
+/* ================================================================
+   PRINCIPLE CARDS
+   ================================================================ */
+.plain{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.plain .p{ background:var(--white); border:1px solid var(--rule-white); border-radius:14px; padding:22px; }
+.plain .p .n{ font-family:var(--mono); font-size:12px; color:var(--frank-blue); font-weight:700; }
+.plain .p h3{ font-size:18px; font-weight:700; margin:8px 0 6px; letter-spacing:-0.01em; }
+.plain .p p{ font-size:14px; color:var(--body); line-height:1.55; }
+
+/* ================================================================
+   CLOSING
+   ================================================================ */
+.closing{ --logo-dot:var(--deep-teal); background:var(--deep-teal); color:#fff; text-align:center; padding:72px 40px; }
+.closing h2{ font-size:clamp(28px,3.6vw,44px); font-weight:900; letter-spacing:-0.02em; margin-bottom:14px; }
+.closing h2 em{ font-style:normal; color:var(--frank-blue); }
+.closing p{ color:rgba(255,255,255,0.78); max-width:56ch; margin:0 auto; font-size:16px; }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width:900px){
+  .trow{ grid-template-columns:44px 1fr; grid-auto-rows:auto; gap:6px 16px; padding:16px 18px; }
+  .trow .chip{ grid-row:span 3; }
+  .trow.head, .mrow.head{ display:none; }
+  .trow.divider{ grid-template-columns:1fr; }
+  .t-ratio{ margin-top:4px; }
+  .mrow{ grid-template-columns:1fr 1fr; gap:0; }
+  .mcell.demo{ grid-column:1 / -1; }
+  .applied-grid, .plain{ grid-template-columns:1fr; }
+  .cover-foot{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:560px){
+  .page{ padding:0 20px; }
+  .cover{ padding:40px 20px; }
+  .sec{ padding:56px 0; }
+  .sec-head{ grid-template-columns:auto 1fr; }
+  .sec-head .tag{ display:none; }
+  .cover-foot{ grid-template-columns:1fr; }
+}
+@media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+
+<!-- inline logo symbol (themeable via currentColor + --logo-dot) -->
+<svg class="hide" aria-hidden="true"><symbol id="frank-logo" viewBox="0 0 870.3 208"><g>
+	<path fill="currentColor" d="M637.9,94.5c0-2.2,0-3.5,0-4.8c0-18.8,0-37.6,0-56.5c0-6.8,1.8-8.6,8.6-8.7c8.2,0,16.4-0.2,24.5,0.1
+		c2.4,0.1,5,1.2,6.9,2.7c6.7,5.3,13.3,10.7,19.6,16.4c1.6,1.5,3,4.1,3.1,6.2c0.2,43.6,0.1,87.2,0.1,130.8c0,4.7-2.2,6.8-6.8,6.8
+		c-9,0-18.1,0.2-27.1-0.1c-2-0.1-4.3-1.1-5.9-2.4c-23.2-19.3-46.4-38.7-69.5-58.1c-0.9-0.8-1.9-1.5-3.2-2.5
+		c-0.1,1.5-0.2,2.6-0.2,3.6c0,17,0,33.9,0,50.9c0,6.9-1.7,8.6-8.4,8.6c-8.4,0-16.8,0.2-25.3-0.1c-2.1-0.1-4.6-1.1-6.3-2.4
+		c-6.6-5.2-12.9-10.8-19.5-16.1c-2.4-2-3.5-4.2-3.5-7.3c0-43.2,0-86.4,0-129.6c0-5.2,2.3-7.4,7.5-7.5c8.7-0.1,17.4-0.3,26,0.1
+		c2.7,0.1,5.7,1.7,7.7,3.5c23.3,21.3,46.4,42.8,69.5,64.3C636.1,92.9,636.6,93.3,637.9,94.5z M545.6,158.6c4.9-0.1,9-4.1,8.8-8.7
+		c-0.2-4.4-4.3-8.3-8.9-8.3c-4.8,0-8.9,4-8.9,8.6C536.6,154.8,540.7,158.7,545.6,158.6z M593,96.8c-0.1,4.7,3.9,8.6,8.8,8.6
+		c4.9,0,9-3.8,9-8.5c0-4.5-4-8.4-8.6-8.5C597.2,88.3,593.1,92.1,593,96.8z M545.3,78.8c4.9,0.1,9-3.7,9.1-8.4c0.1-4.6-4.1-8.6-9-8.6
+		c-4.7,0-8.7,3.7-8.8,8.3C536.4,74.8,540.3,78.7,545.3,78.8z M545.4,88.4c-4.9,0-8.9,4-8.8,8.7c0.1,4.6,4.3,8.5,9.1,8.3
+		c4.7-0.1,8.7-4,8.7-8.5C554.4,92.4,550.2,88.4,545.4,88.4z M649.5,96.7c-0.1,4.7,3.9,8.6,8.7,8.7c4.8,0.1,9-3.9,9-8.5
+		c0-4.4-4-8.4-8.7-8.5C653.8,88.3,649.6,92.1,649.5,96.7z M545.3,52.2c4.9,0,9-3.8,9-8.4c0-4.6-4.1-8.5-9-8.5
+		c-4.7,0-8.7,3.8-8.8,8.3C536.5,48.3,540.3,52.1,545.3,52.2z M573.7,78.8c4.9,0,9-4,8.9-8.6c-0.1-4.5-4.4-8.5-9.1-8.4
+		c-4.7,0.1-8.6,3.9-8.6,8.4C564.8,75,568.8,78.9,573.7,78.8z M658.3,78.8c4.9,0,9-3.9,8.9-8.6c-0.1-4.5-4-8.3-8.7-8.4
+		c-4.9-0.1-9,3.7-9.1,8.4C649.4,74.9,653.4,78.8,658.3,78.8z M658.5,52.2c4.9,0,8.9-4,8.8-8.6c-0.1-4.5-4.1-8.3-8.8-8.3
+		c-4.9,0-8.9,3.8-8.9,8.5C649.5,48.5,653.4,52.2,658.5,52.2z M658.3,158.6c4.7,0,8.8-3.7,8.9-8.2c0.2-4.6-3.9-8.7-8.7-8.9
+		c-4.8-0.2-9,3.8-9.1,8.5C649.4,154.7,653.4,158.6,658.3,158.6z M545.4,132c4.9,0,9-3.9,9-8.5c0-4.7-4.2-8.5-9.1-8.4
+		c-4.8,0.1-8.7,3.7-8.7,8.3C536.5,128.1,540.5,131.9,545.4,132z M658.4,131.9c4.9,0,8.9-3.9,8.8-8.6c-0.1-4.5-4.1-8.2-8.8-8.3
+		c-5,0-9,3.7-9,8.4C649.5,128.2,653.4,132,658.4,131.9z M630.2,131.9c4.8,0,8.7-3.7,8.8-8.2c0.1-4.7-3.8-8.6-8.7-8.7
+		c-5-0.1-9,3.7-9,8.4C621.2,128.2,625.1,131.9,630.2,131.9z"/>
+	<path fill="currentColor" d="M312.2,135c6.2,5.1,11.9,9.9,17.8,14.6c2.6,2,3.7,4.4,3.6,7.6c-0.1,7.4,0,14.9,0,22.3c0,6.2-1.8,8-7.9,8.1
+		c-8.4,0-16.8,0.2-25.3-0.1c-2.4-0.1-5.1-1-7-2.5c-14.1-11-28.1-22.3-42.2-33.5c-0.6-0.4-1.2-0.8-2.2-1.5c-0.1,1.4-0.2,2.5-0.2,3.5
+		c0,8.9,0,17.8,0,26.7c0,5.2-2,7.3-7.1,7.3c-8.9,0-17.8,0.1-26.7-0.1c-2-0.1-4.4-1-6-2.2c-6.8-5.4-13.2-11.2-19.9-16.7
+		c-2.5-2.1-3.6-4.4-3.6-7.7c0.1-43.1,0-86.2,0.1-129.3c0-5.6,2-7.7,7.6-7.7c36.8,0,73.5-0.1,110.3,0.1c2.2,0,4.8,1.1,6.6,2.6
+		c6.8,5.4,13.3,11.1,20,16.6c2.5,2.1,3.6,4.4,3.6,7.7c-0.1,25.3,0,50.5-0.1,75.8c0,5.8-2.1,7.8-7.8,7.8c-4.1,0-8.2,0-12.3,0
+		C313.3,134.5,313.1,134.7,312.2,135z M262.3,88.4c-4.9,0.1-9,4.1-8.8,8.7c0.1,4.6,4.4,8.5,9.2,8.3c4.7-0.2,8.6-4,8.6-8.5
+		C271.3,92.2,267.2,88.4,262.3,88.4z M291.2,88.5c-4.9-0.3-9.1,3.4-9.4,8.1c-0.2,4.5,3.5,8.5,8.2,8.8c4.8,0.4,9.2-3.3,9.5-7.9
+		C299.9,92.8,296.1,88.7,291.2,88.5z M290.8,158.6c4.9-0.1,8.9-4,8.8-8.7c-0.1-4.5-4.2-8.3-8.8-8.4c-4.7-0.1-9,4-9,8.6
+		C281.8,154.7,285.9,158.6,290.8,158.6z M214.8,150.1c0-4.7-4.2-8.7-8.9-8.6c-4.7,0.1-9,4.3-8.9,8.7c0.1,4.6,4.3,8.4,9.2,8.3
+		C211,158.5,214.8,154.7,214.8,150.1z M206,78.8c4.9,0,8.9-4,8.8-8.6c-0.1-4.6-4-8.3-8.7-8.4c-4.8-0.1-9.1,3.9-9.1,8.5
+		C197.1,75,201.1,78.9,206,78.8z M214.8,97c0-4.7-4-8.6-8.9-8.6c-4.7,0-8.8,3.8-8.9,8.2c-0.1,4.6,3.9,8.6,8.8,8.7
+		C210.7,105.5,214.8,101.7,214.8,97z M234,88.4c-4.8,0.1-8.9,4.2-8.7,8.8c0.2,4.5,4.2,8.2,8.9,8.2c4.9,0,8.9-3.9,8.9-8.6
+		C243,92.2,238.9,88.3,234,88.4z M290.7,52.2c5,0,8.9-3.8,8.8-8.6c-0.1-4.6-4.3-8.5-9.1-8.3c-4.7,0.1-8.6,3.9-8.6,8.5
+		C281.8,48.4,285.8,52.2,290.7,52.2z M262.6,52.2c4.9-0.1,8.9-4,8.7-8.7c-0.2-4.5-4.2-8.2-8.9-8.2c-4.8,0-9,4-8.9,8.6
+		C253.6,48.4,257.7,52.2,262.6,52.2z M234.2,52.2c5,0,8.9-3.8,8.9-8.5c-0.1-4.7-4.2-8.5-9.1-8.4c-4.7,0.1-8.7,3.9-8.7,8.4
+		C225.2,48.3,229.3,52.2,234.2,52.2z M299.6,70.1c-0.1-4.6-4.3-8.5-9.2-8.3c-4.7,0.2-8.6,4-8.6,8.5c0,4.7,4.1,8.6,9,8.5
+		C295.7,78.8,299.6,74.9,299.6,70.1z M206.1,52.2c5-0.1,8.9-3.9,8.7-8.6c-0.1-4.5-4.1-8.2-8.8-8.3c-4.9,0-9,3.9-9,8.5
+		C197.1,48.5,201.1,52.2,206.1,52.2z M262.4,131.9c5,0,9-3.8,8.9-8.5c0-4.5-3.9-8.3-8.7-8.4c-4.9-0.1-9.1,3.7-9.1,8.3
+		C253.4,128,257.4,131.9,262.4,131.9z M214.8,123.7c0.1-4.8-3.8-8.6-8.7-8.6c-4.9,0-9,3.8-9,8.4c0,4.5,3.9,8.3,8.6,8.5
+		C210.6,132.1,214.7,128.4,214.8,123.7z"/>
+	<path fill="currentColor" d="M440.2,134.7c-7.2,0-14,0-21.3,0c0,1.6,0,3,0,4.4c0,13.5,0,27,0,40.5c0,6.1-1.8,7.9-8,7.9
+		c-8.5,0-17.1,0.1-25.6-0.1c-2-0.1-4.4-0.9-6-2.1c-6.8-5.2-13.2-10.8-19.9-16.1c-2.6-2-3.8-4.3-3.7-7.6c0.1-43.2,0-86.5,0-129.7
+		c0-5.3,2.1-7.5,7.4-7.5c36.9,0,73.8-0.1,110.7,0.1c2,0,4.4,0.9,6,2.2c7,5.5,13.9,11.1,20.6,17c1.5,1.4,2.8,3.9,2.8,5.9
+		c0.2,43.7,0.1,87.4,0.1,131.2c0,4.6-1.9,6.6-6.5,6.6c-9.2,0.1-18.3,0.1-27.5-0.1c-1.8,0-3.9-0.9-5.3-2
+		c-6.7-5.3-13.2-10.9-19.9-16.1c-3-2.3-4.1-4.9-4-8.6C440.3,152.2,440.2,143.7,440.2,134.7z M460.6,105.4c4.9,0,9-3.9,9-8.5
+		c0-4.4-4.1-8.3-8.7-8.4c-4.9-0.1-9,3.7-9.1,8.4C451.7,101.5,455.7,105.4,460.6,105.4z M460.7,78.8c4.9,0,9-4,9-8.6
+		c-0.1-4.4-4.1-8.3-8.8-8.4c-4.9-0.1-9,3.7-9.1,8.4C451.7,74.9,455.8,78.8,460.7,78.8z M376.2,52.2c5-0.1,8.9-4,8.7-8.7
+		c-0.1-4.5-4.2-8.2-8.9-8.2c-4.9,0-8.9,3.9-8.9,8.6C367.2,48.5,371.1,52.2,376.2,52.2z M395.4,96.7c-0.2,4.7,3.7,8.6,8.7,8.8
+		c4.8,0.1,9.1-3.8,9.1-8.4c0-4.4-3.9-8.4-8.6-8.6C399.7,88.2,395.5,92,395.4,96.7z M384.9,97c0-4.6-4.1-8.6-8.9-8.6
+		c-4.7,0-8.7,3.7-8.8,8.2c-0.1,4.7,3.7,8.6,8.7,8.7C380.6,105.5,384.9,101.6,384.9,97z M376,158.6c4.9,0,9-4,8.9-8.6
+		c-0.1-4.4-4.2-8.4-8.8-8.4c-4.8-0.1-9,3.9-9,8.6C367.1,154.8,371.1,158.6,376,158.6z M460.8,158.6c4.8-0.1,9-4.1,8.8-8.7
+		c-0.1-4.4-4.3-8.3-8.9-8.4c-4.8,0-9,4-8.9,8.6C451.8,154.8,455.9,158.6,460.8,158.6z M432.4,52.2c4.9,0,9-3.8,9-8.4
+		c0-4.6-4.2-8.5-9.1-8.4c-4.8,0.1-8.7,3.8-8.8,8.3C423.4,48.3,427.4,52.1,432.4,52.2z M460.2,52.2c4.9,0.2,9.1-3.4,9.4-8
+		c0.3-4.5-3.8-8.7-8.7-8.9c-4.9-0.2-9,3.7-9.1,8.3C451.7,48.2,455.4,52,460.2,52.2z M375.9,78.8c4.9,0,9-3.9,9-8.5
+		c0-4.6-4.3-8.6-9-8.5c-4.7,0.1-8.7,3.9-8.7,8.4C367.1,74.9,371,78.8,375.9,78.8z M432.5,88.4c-4.9-0.1-9,3.8-9,8.5
+		c0,4.7,4.1,8.5,9,8.5c4.7,0,8.7-3.8,8.9-8.3C441.5,92.6,437.3,88.5,432.5,88.4z M404.2,52.2c4.9,0,9-3.9,8.9-8.5
+		c0-4.6-4.3-8.5-9.1-8.4c-4.8,0.1-8.6,3.8-8.7,8.4C395.3,48.4,399.2,52.2,404.2,52.2z M460.6,132c4.9,0,9.1-3.9,9-8.5
+		c0-4.6-4.2-8.5-9.1-8.4c-4.8,0.1-8.6,3.7-8.7,8.3C451.7,128.1,455.6,131.9,460.6,132z M376,131.9c4.9,0,8.9-3.9,8.8-8.6
+		c-0.1-4.6-4.3-8.4-9.2-8.3c-4.7,0.1-8.6,3.8-8.6,8.4C367.1,128.2,371.1,131.9,376,131.9z"/>
+	<path fill="currentColor" d="M786.8,51c6,0,12.7,0,19.8,0c0.1-1.3,0.3-2.6,0.3-3.9c0-5.4-0.1-10.9,0.1-16.3c0.1-3.8,2.2-6.1,6-6.2
+		c9.5-0.2,19.1-0.2,28.6,0c1.6,0,3.4,0.9,4.6,1.9c7.3,5.8,14.5,11.6,21.5,17.7c1.4,1.3,2.3,3.8,2.4,5.8c0.3,7.9,0.1,15.8,0.1,23.8
+		c0,5.2-2.2,7.5-7.4,7.6c-5.4,0.1-10.9,0-16.3,0c-1.3,0-2.7,0-4.4,0c0,6.4,0,12.4,0,18.4c0,6-2,7.9-8,8c-4.6,0-9.3,0-13.9,0
+		c-0.4,0.5-0.8,1.1-1.2,1.6c1.2,0.6,2.5,1.1,3.5,1.9c15,12.9,30.1,25.8,44.9,38.9c1.5,1.4,2.7,3.9,2.8,6c0.3,8.2,0.2,16.3,0.1,24.5
+		c0,4.6-2.2,6.7-6.9,6.8c-9,0-18.1,0.2-27.1-0.1c-2.2-0.1-4.8-1.3-6.5-2.8c-13.9-11.8-27.6-23.7-41.3-35.7c-0.7-0.6-1.3-1.1-2.6-2.1
+		c-0.1,1.8-0.2,3-0.2,4.3c0,9.4,0,18.8,0,28.2c0,6.5-1.7,8.2-8.1,8.2c-8.3,0-16.6,0.2-24.9-0.1c-2.5-0.1-5.4-1.1-7.4-2.6
+		c-7-5.3-13.8-10.9-20.3-16.8c-1.5-1.4-2.5-4.3-2.5-6.5c-0.2-24.6-0.1-49.3-0.1-73.9c0-18.4,0-36.9,0-55.3c0-5.9,1.9-7.8,7.7-7.8
+		c8.4,0,16.8-0.2,25.3,0.1c2.4,0.1,5.1,1.1,7,2.6c6.9,5.4,13.7,11,20.3,16.8C784.4,45.6,785.2,48.2,786.8,51z M742.7,158.6
+		c4.9-0.1,8.9-4,8.8-8.7c-0.1-4.5-4.2-8.3-8.8-8.4c-4.7,0-9,4.1-9,8.6C733.7,154.8,737.8,158.7,742.7,158.6z M827.1,158.6
+		c4.9,0.1,9-3.8,9.1-8.4c0-4.6-4.2-8.7-8.9-8.7c-4.6,0-8.8,3.9-8.9,8.3C818.2,154.5,822.3,158.5,827.1,158.6z M742.7,88.4
+		c-4.8,0-9,4-9,8.5c0,4.6,4.2,8.5,9,8.5c4.7,0,8.7-3.8,8.8-8.3C751.6,92.4,747.6,88.5,742.7,88.4z M771,88.4c-4.9-0.1-9,3.8-9,8.5
+		c0,4.6,3.7,8.4,8.5,8.5c4.9,0.2,9.1-3.6,9.2-8.3C779.8,92.4,775.9,88.5,771,88.4z M733.7,70.5c0.1,4.6,4.3,8.5,9.2,8.3
+		c4.9-0.1,8.8-4.1,8.6-8.8c-0.2-4.5-4.2-8.2-8.9-8.2C737.7,61.9,733.6,65.9,733.7,70.5z M807.9,70.4c0-4.7-4-8.6-8.9-8.6
+		c-4.7,0-8.8,3.8-8.9,8.3c-0.1,4.7,3.9,8.7,8.8,8.7C803.8,78.9,807.9,75.1,807.9,70.4z M799,132c5,0,8.9-3.7,8.9-8.5
+		c0-4.6-3.8-8.3-8.6-8.4c-4.9-0.1-9,3.6-9.2,8.3C790.1,128,794.1,131.9,799,132z M827.2,52.2c5,0,9-3.7,9-8.4c0-4.5-3.9-8.3-8.6-8.5
+		c-4.9-0.2-9.1,3.7-9.2,8.3C818.3,48.2,822.3,52.1,827.2,52.2z M742.4,52.2c5,0.1,9-3.6,9-8.3c0-4.6-3.8-8.4-8.5-8.5
+		c-4.9-0.2-9.1,3.6-9.3,8.2C733.6,48.2,737.5,52.1,742.4,52.2z M742.7,131.9c5-0.1,8.9-3.9,8.8-8.6c-0.1-4.6-4-8.2-8.8-8.3
+		c-4.9,0-9,3.8-9,8.4C733.7,128.1,737.8,132,742.7,131.9z"/>
+	<path fill="currentColor" d="M142.8,82.4c5.5,4.8,10.8,9.7,16.5,14.2c2.2,1.8,3.5,3.6,3.5,6.5c-0.1,7.9,0,15.8,0,23.8c0,5.6-2,7.6-7.6,7.6
+		c-24.1,0-48.3,0-72.4,0c-1.3,0-2.7,0-4.6,0c0,1.6,0,2.9,0,4.2c0,13.7,0,27.5,0,41.2c0,5.7-1.9,7.6-7.5,7.7c-8.7,0-17.3,0-26,0
+		c-2.8,0-4.8-1-6.8-3c-6.1-5.6-12.6-10.8-18.6-16.5c-1.7-1.6-2.7-4.7-2.7-7.1c-0.2-34.9-0.1-69.8-0.1-104.8c0-7.9,0-15.8,0-23.8
+		c0-5.9,2-8,7.7-8c36.8,0,73.6-0.1,110.3,0.1c2.1,0,4.6,1,6.3,2.4c6.8,5.6,13.4,11.4,19.8,17.4c1.3,1.2,2.1,3.6,2.2,5.5
+		c0.2,8,0.1,16.1,0.1,24.1c0,5-2.1,7.2-7.2,7.4c-4.1,0.1-8.1,0-12.2,0C143.1,81.8,143,82.1,142.8,82.4z M36.8,78.8c4.8,0,9-4,9-8.6
+		c0-4.6-4.3-8.5-9.1-8.4c-4.7,0.1-8.6,3.9-8.7,8.4C27.9,74.9,31.9,78.8,36.8,78.8z M130.3,97.2c0.2-4.7-3.7-8.7-8.6-8.8
+		c-4.8-0.1-9.1,3.8-9.2,8.4c-0.1,4.3,3.9,8.4,8.6,8.6C126,105.7,130.2,102,130.3,97.2z M36.9,88.4c-4.8,0-8.9,3.9-8.9,8.6
+		c0,4.6,3.9,8.3,8.7,8.4c4.7,0.1,9.1-3.9,9.2-8.4C45.9,92.6,41.7,88.5,36.9,88.4z M65,88.4c-4.9,0-8.8,4-8.7,8.7
+		c0.1,4.7,4.2,8.5,9.1,8.3c4.7-0.2,8.6-4,8.6-8.5C74,92.3,69.8,88.4,65,88.4z M93.3,88.4c-4.8,0-9,4-8.9,8.6c0.1,4.6,4,8.3,8.7,8.4
+		c4.9,0.1,9-3.6,9-8.4C102.2,92.3,98.2,88.4,93.3,88.4z M65.1,52.2c5,0,8.9-3.9,8.8-8.6c-0.1-4.5-4.1-8.3-8.8-8.3
+		c-4.9-0.1-8.9,3.7-8.9,8.5C56.2,48.5,60.1,52.2,65.1,52.2z M130.3,43.6c-0.1-4.7-4.2-8.5-9.1-8.3c-4.7,0.1-8.7,4-8.7,8.4
+		c0,4.6,4.1,8.5,9,8.5C126.6,52.1,130.4,48.4,130.3,43.6z M36.7,132c4.9,0.1,9-3.8,9.1-8.4c0.1-4.5-4.2-8.5-9-8.5
+		c-4.8,0-8.7,3.6-8.8,8.2C27.8,128,31.7,131.9,36.7,132z M36.9,52.2c4.8,0,9-4.1,8.9-8.6c-0.1-4.5-4.5-8.4-9.2-8.3
+		c-4.8,0.1-8.6,3.9-8.6,8.4C28,48.5,31.9,52.2,36.9,52.2z M36.7,158.6c4.8,0,9.1-4,9.1-8.5c0-4.5-4.4-8.6-9-8.6
+		c-4.8,0-8.9,4.1-8.8,8.8C28.1,154.8,32,158.6,36.7,158.6z M93.3,52.2c5,0,8.9-3.8,8.8-8.6c-0.1-4.6-4-8.3-8.7-8.4
+		c-4.8-0.1-9,3.9-9,8.5C84.4,48.4,88.4,52.2,93.3,52.2z"/>
+	<path fill="var(--logo-dot,#fff)" d="M545.6,158.6c-4.9,0.1-9-3.7-9-8.4c0-4.6,4.1-8.7,8.9-8.6c4.6,0,8.7,3.9,8.9,8.3C554.5,154.4,550.5,158.5,545.6,158.6z"/>
+	<path fill="var(--logo-dot,#fff)" d="M593,96.8c0.1-4.7,4.2-8.4,9.1-8.3c4.7,0.1,8.6,4,8.6,8.5c0,4.7-4.1,8.6-9,8.5C596.9,105.4,592.9,101.5,593,96.8z"/>
+	<path fill="var(--logo-dot,#fff)" d="M545.3,78.8c-4.9-0.1-8.9-4-8.7-8.7c0.1-4.5,4.1-8.3,8.8-8.3c4.8,0,9,4,9,8.6C554.3,75.1,550.2,78.9,545.3,78.8z"/>
+	<path fill="var(--logo-dot,#fff)" d="M545.4,88.4c4.8,0,9,3.9,9,8.5c0,4.4-4,8.3-8.7,8.5c-4.9,0.1-9.1-3.7-9.1-8.3C536.5,92.4,540.5,88.5,545.4,88.4z"/>
+	<path fill="var(--logo-dot,#fff)" d="M649.5,96.7c0.1-4.6,4.3-8.4,9.1-8.3c4.6,0.1,8.7,4.1,8.7,8.5c0,4.6-4.2,8.6-9,8.5C653.4,105.4,649.4,101.4,649.5,96.7z"/>
+	<path fill="var(--logo-dot,#fff)" d="M545.3,52.2c-5,0-8.9-3.9-8.8-8.6c0.1-4.5,4.1-8.2,8.8-8.3c4.9,0,9,3.9,9,8.5C554.4,48.4,550.3,52.2,545.3,52.2z"/>
+	<path fill="var(--logo-dot,#fff)" d="M573.7,78.8c-4.9,0-8.9-3.8-8.8-8.6c0-4.6,3.9-8.3,8.6-8.4c4.8-0.1,9.1,3.9,9.1,8.4C582.7,74.9,578.6,78.8,573.7,78.8z"/>
+	<path fill="var(--logo-dot,#fff)" d="M658.3,78.8c-4.9,0-8.9-3.9-8.8-8.6c0.1-4.7,4.2-8.5,9.1-8.4c4.7,0.1,8.6,3.9,8.7,8.4C667.3,74.9,663.2,78.8,658.3,78.8z"
+		/>
+	<path fill="var(--logo-dot,#fff)" d="M658.5,52.2c-5,0-8.9-3.6-9-8.4c0-4.7,4-8.5,8.9-8.5c4.7,0,8.7,3.8,8.8,8.3C667.4,48.2,663.4,52.1,658.5,52.2z"/>
+	<path fill="var(--logo-dot,#fff)" d="M658.3,158.6c-4.9,0-8.9-3.9-8.8-8.6c0.1-4.7,4.3-8.6,9.1-8.5c4.8,0.2,8.9,4.3,8.7,8.9C667.1,154.9,663,158.6,658.3,158.6z
+		"/>
+	<path fill="var(--logo-dot,#fff)" d="M545.4,132c-4.9,0-8.9-3.9-8.8-8.6c0.1-4.6,4-8.3,8.7-8.3c4.9-0.1,9,3.7,9.1,8.4C554.4,128.1,550.3,132,545.4,132z"/>
+	<path fill="var(--logo-dot,#fff)" d="M658.4,131.9c-5,0-8.9-3.7-8.9-8.4c0-4.7,4-8.5,9-8.4c4.7,0,8.7,3.8,8.8,8.3C667.4,128,663.4,131.9,658.4,131.9z"/>
+	<path fill="var(--logo-dot,#fff)" d="M630.2,131.9c-5,0-8.9-3.7-8.9-8.5c0-4.7,4-8.5,9-8.4c4.9,0,8.9,4,8.7,8.7C638.9,128.3,634.9,131.9,630.2,131.9z"/>
+	<path fill="var(--logo-dot,#fff)" d="M262.3,88.4c4.9-0.1,9,3.8,9,8.5c0,4.5-3.9,8.3-8.6,8.5c-4.8,0.2-9.1-3.7-9.2-8.3C253.4,92.5,257.5,88.5,262.3,88.4z"/>
+	<path fill="var(--logo-dot,#fff)" d="M291.2,88.5c4.9,0.3,8.7,4.3,8.4,9c-0.3,4.6-4.7,8.3-9.5,7.9c-4.8-0.4-8.5-4.3-8.2-8.8C282,91.9,286.3,88.2,291.2,88.5z"/>
+	<path fill="var(--logo-dot,#fff)" d="M290.8,158.6c-4.9,0.1-9-3.8-9-8.5c0-4.6,4.3-8.6,9-8.6c4.6,0.1,8.7,3.9,8.8,8.4C299.7,154.6,295.7,158.5,290.8,158.6z"/>
+	<path fill="var(--logo-dot,#fff)" d="M214.8,150.1c0,4.6-3.8,8.4-8.6,8.5c-4.9,0.1-9.1-3.7-9.2-8.3c-0.1-4.5,4.1-8.7,8.9-8.7
+		C210.7,141.4,214.8,145.4,214.8,150.1z"/>
+	<path fill="var(--logo-dot,#fff)" d="M206,78.8c-4.9,0-9-3.8-9-8.5c0-4.5,4.3-8.5,9.1-8.5c4.7,0.1,8.6,3.8,8.7,8.4C214.9,74.9,210.9,78.8,206,78.8z"/>
+	<path fill="var(--logo-dot,#fff)" d="M214.8,97c0,4.7-4.1,8.5-9,8.4c-4.9-0.1-8.9-4.1-8.8-8.7c0.1-4.4,4.2-8.2,8.9-8.2C210.8,88.4,214.9,92.3,214.8,97z"/>
+	<path fill="var(--logo-dot,#fff)" d="M234,88.4c4.8-0.1,9,3.8,9.1,8.4c0,4.7-4,8.6-8.9,8.6c-4.7,0-8.8-3.7-8.9-8.2C225.1,92.6,229.2,88.5,234,88.4z"/>
+	<path fill="var(--logo-dot,#fff)" d="M290.7,52.2c-5,0-9-3.7-9-8.4c0-4.5,3.9-8.3,8.6-8.5c4.9-0.1,9.1,3.7,9.1,8.3C299.6,48.3,295.7,52.1,290.7,52.2z"/>
+	<path fill="var(--logo-dot,#fff)" d="M262.6,52.2c-4.9,0.1-9-3.7-9.1-8.3c0-4.6,4.1-8.6,8.9-8.6c4.7,0,8.7,3.7,8.9,8.2C271.5,48.2,267.5,52.1,262.6,52.2z"/>
+	<path fill="var(--logo-dot,#fff)" d="M234.2,52.2c-4.9,0-9-3.8-8.9-8.5c0-4.5,4-8.3,8.7-8.4c4.9-0.1,9,3.7,9.1,8.4C243.1,48.4,239.2,52.2,234.2,52.2z"/>
+	<path fill="var(--logo-dot,#fff)" d="M299.6,70.1c0.1,4.7-3.9,8.6-8.8,8.7c-4.9,0.1-9-3.8-9-8.5c0-4.5,3.9-8.4,8.6-8.5C295.2,61.7,299.5,65.5,299.6,70.1z"/>
+	<path fill="var(--logo-dot,#fff)" d="M206.1,52.2c-5,0.1-9-3.7-9-8.4c0-4.6,4.1-8.5,9-8.5c4.7,0,8.7,3.7,8.8,8.3C214.9,48.3,211.1,52.1,206.1,52.2z"/>
+	<path fill="var(--logo-dot,#fff)" d="M262.4,131.9c-5,0-9-3.9-8.9-8.6c0.1-4.6,4.2-8.4,9.1-8.3c4.8,0.1,8.7,3.8,8.7,8.4C271.4,128.2,267.4,132,262.4,131.9z"/>
+	<path fill="var(--logo-dot,#fff)" d="M214.8,123.7c-0.1,4.7-4.2,8.4-9.2,8.2c-4.8-0.2-8.7-4-8.6-8.5c0-4.7,4.2-8.5,9-8.4C211,115.1,214.9,118.9,214.8,123.7z"/>
+	<path fill="var(--logo-dot,#fff)" d="M460.6,105.4c-4.9,0-8.9-3.9-8.8-8.6c0.1-4.7,4.2-8.5,9.1-8.4c4.6,0.1,8.7,4,8.7,8.4C469.7,101.5,465.5,105.4,460.6,105.4z
+		"/>
+	<path fill="var(--logo-dot,#fff)" d="M460.7,78.8c-4.9,0-8.9-3.9-8.9-8.6c0.1-4.7,4.2-8.5,9.1-8.4c4.7,0.1,8.7,4,8.8,8.4C469.7,74.8,465.5,78.8,460.7,78.8z"/>
+	<path fill="var(--logo-dot,#fff)" d="M376.2,52.2c-5,0.1-9-3.6-9-8.3c0-4.7,4-8.6,8.9-8.6c4.7,0,8.7,3.8,8.9,8.2C385,48.2,381.1,52.1,376.2,52.2z"/>
+	<path fill="var(--logo-dot,#fff)" d="M395.4,96.7c0.2-4.7,4.3-8.4,9.2-8.2c4.7,0.2,8.6,4.2,8.6,8.6c0,4.6-4.3,8.5-9.1,8.4C399.1,105.3,395.2,101.4,395.4,96.7z"
+		/>
+	<path fill="var(--logo-dot,#fff)" d="M384.9,97c0,4.6-4.3,8.5-9.1,8.4c-5-0.1-8.8-4-8.7-8.7c0.1-4.5,4.1-8.3,8.8-8.2C380.8,88.4,384.9,92.4,384.9,97z"/>
+	<path fill="var(--logo-dot,#fff)" d="M376,158.6c-4.9,0-8.9-3.8-8.9-8.5c0-4.6,4.2-8.6,9-8.6c4.6,0.1,8.7,4,8.8,8.4C385,154.6,380.9,158.5,376,158.6z"/>
+	<path fill="var(--logo-dot,#fff)" d="M460.8,158.6c-4.9,0.1-9-3.8-9-8.5c0-4.6,4.2-8.7,8.9-8.6c4.6,0,8.7,4,8.9,8.4C469.8,154.4,465.6,158.5,460.8,158.6z"/>
+	<path fill="var(--logo-dot,#fff)" d="M432.4,52.2c-5,0-8.9-3.9-8.8-8.6c0.1-4.5,4-8.2,8.8-8.3c4.8-0.1,9.1,3.9,9.1,8.4C441.4,48.3,437.3,52.2,432.4,52.2z"/>
+	<path fill="var(--logo-dot,#fff)" d="M460.2,52.2c-4.8-0.2-8.5-4-8.4-8.6c0.1-4.7,4.3-8.5,9.1-8.3c4.8,0.2,8.9,4.3,8.7,8.9C469.4,48.7,465.1,52.4,460.2,52.2z"
+		/>
+	<path fill="var(--logo-dot,#fff)" d="M375.9,78.8c-4.9,0-8.9-3.9-8.8-8.6c0.1-4.5,4-8.3,8.7-8.4c4.8-0.1,9,3.9,9,8.5C384.9,75,380.8,78.9,375.9,78.8z"/>
+	<path fill="var(--logo-dot,#fff)" d="M432.5,88.4c4.8,0.1,9,4.2,8.9,8.7c-0.1,4.5-4.2,8.3-8.9,8.3c-4.9,0-9-3.9-9-8.5C423.6,92.2,427.7,88.4,432.5,88.4z"/>
+	<path fill="var(--logo-dot,#fff)" d="M404.2,52.2c-5,0-8.9-3.7-8.8-8.5c0-4.5,3.9-8.3,8.7-8.4c4.9-0.1,9.1,3.8,9.1,8.4C413.2,48.3,409.1,52.2,404.2,52.2z"/>
+	<path fill="var(--logo-dot,#fff)" d="M460.6,132c-5,0-8.9-3.9-8.8-8.6c0.1-4.6,4-8.3,8.7-8.3c4.9-0.1,9,3.8,9.1,8.4C469.7,128.1,465.5,132,460.6,132z"/>
+	<path fill="var(--logo-dot,#fff)" d="M376,131.9c-5,0-9-3.7-8.9-8.5c0-4.6,3.9-8.3,8.6-8.4c4.9-0.1,9.1,3.7,9.2,8.3C385,128,381,131.9,376,131.9z"/>
+	<path fill="var(--logo-dot,#fff)" d="M742.7,158.6c-4.9,0.1-9-3.8-9-8.5c0-4.5,4.3-8.7,9-8.6c4.6,0,8.7,3.9,8.8,8.4C751.6,154.6,747.6,158.5,742.7,158.6z"/>
+	<path fill="var(--logo-dot,#fff)" d="M827.1,158.6c-4.9-0.1-8.9-4.1-8.8-8.7c0.1-4.4,4.4-8.3,8.9-8.3c4.7,0,9,4.1,8.9,8.7C836.2,154.8,832,158.7,827.1,158.6z"
+		/>
+	<path fill="var(--logo-dot,#fff)" d="M742.7,88.4c4.9,0,8.9,4,8.8,8.7c-0.1,4.5-4,8.3-8.8,8.3c-4.9,0-9-3.9-9-8.5C733.7,92.4,737.9,88.4,742.7,88.4z"/>
+	<path fill="var(--logo-dot,#fff)" d="M771,88.4c4.9,0.1,8.8,4,8.7,8.7c-0.1,4.7-4.3,8.4-9.2,8.3c-4.8-0.2-8.5-3.9-8.5-8.5C762,92.2,766.1,88.4,771,88.4z"/>
+	<path fill="var(--logo-dot,#fff)" d="M733.7,70.5c-0.1-4.6,4-8.6,8.9-8.7c4.7-0.1,8.7,3.6,8.9,8.2c0.2,4.7-3.7,8.7-8.6,8.8C738,79,733.8,75.1,733.7,70.5z"/>
+	<path fill="var(--logo-dot,#fff)" d="M807.9,70.4c0,4.7-4.1,8.5-9,8.4c-4.9-0.1-8.9-4.1-8.8-8.7c0.1-4.4,4.2-8.2,8.9-8.3C803.9,61.8,808,65.7,807.9,70.4z"/>
+	<path fill="var(--logo-dot,#fff)" d="M799,132c-4.9,0-9-4-8.9-8.6c0.1-4.7,4.3-8.4,9.2-8.3c4.8,0.1,8.6,3.8,8.6,8.4C808,128.2,804,132,799,132z"/>
+	<path fill="var(--logo-dot,#fff)" d="M827.2,52.2c-4.9,0-9-3.9-8.8-8.6c0.1-4.6,4.4-8.4,9.2-8.3c4.7,0.1,8.6,4,8.6,8.5C836.2,48.5,832.2,52.2,827.2,52.2z"/>
+	<path fill="var(--logo-dot,#fff)" d="M742.4,52.2c-4.9-0.1-8.9-4-8.7-8.7c0.1-4.6,4.4-8.4,9.3-8.2c4.8,0.2,8.6,4,8.5,8.5C751.5,48.5,747.5,52.2,742.4,52.2z"/>
+	<path fill="var(--logo-dot,#fff)" d="M742.7,131.9c-4.9,0.1-9-3.8-9-8.5c0-4.6,4.1-8.5,9-8.4c4.8,0,8.7,3.7,8.8,8.3C751.6,128.1,747.7,131.9,742.7,131.9z"/>
+	<path fill="var(--logo-dot,#fff)" d="M36.8,78.8c-4.9,0-9-3.9-8.9-8.6c0.1-4.5,4-8.3,8.7-8.4c4.8-0.1,9.1,3.9,9.1,8.4C45.8,74.8,41.7,78.8,36.8,78.8z"/>
+	<path fill="var(--logo-dot,#fff)" d="M130.3,97.2c-0.2,4.8-4.3,8.4-9.2,8.2c-4.6-0.2-8.7-4.3-8.6-8.6c0.1-4.6,4.4-8.5,9.2-8.4C126.6,88.5,130.5,92.5,130.3,97.2
+		z"/>
+	<path fill="var(--logo-dot,#fff)" d="M36.9,88.4c4.8,0,9,4.1,9,8.6c-0.1,4.5-4.5,8.5-9.2,8.4c-4.8-0.1-8.6-3.9-8.7-8.4C27.9,92.3,32,88.4,36.9,88.4z"/>
+	<path fill="var(--logo-dot,#fff)" d="M65,88.4c4.8,0,9,3.9,9,8.5c0,4.5-3.9,8.3-8.6,8.5c-4.9,0.2-9-3.6-9.1-8.3C56.1,92.4,60.1,88.5,65,88.4z"/>
+	<path fill="var(--logo-dot,#fff)" d="M93.3,88.4c4.9,0,8.9,3.9,8.9,8.6c-0.1,4.8-4.1,8.5-9,8.4c-4.8-0.1-8.6-3.8-8.7-8.4C84.3,92.4,88.4,88.4,93.3,88.4z"/>
+	<path fill="var(--logo-dot,#fff)" d="M65.1,52.2c-5,0-8.9-3.6-8.9-8.4c0-4.7,4-8.5,8.9-8.5c4.7,0.1,8.7,3.8,8.8,8.3C74,48.3,70.1,52.1,65.1,52.2z"/>
+	<path fill="var(--logo-dot,#fff)" d="M130.3,43.6c0.1,4.8-3.8,8.5-8.8,8.6c-4.9,0-9.1-3.9-9-8.5c0-4.4,4-8.3,8.7-8.4C126.1,35.1,130.3,38.9,130.3,43.6z"/>
+	<path fill="var(--logo-dot,#fff)" d="M36.7,132c-5-0.1-8.9-3.9-8.7-8.7c0.1-4.6,4-8.2,8.8-8.2c4.8,0,9.1,4,9,8.5C45.7,128.2,41.6,132,36.7,132z"/>
+	<path fill="var(--logo-dot,#fff)" d="M36.9,52.2c-5,0-8.9-3.6-8.9-8.4c0-4.6,3.8-8.3,8.6-8.4c4.8-0.1,9.1,3.8,9.2,8.3C45.9,48,41.7,52.1,36.9,52.2z"/>
+	<path fill="var(--logo-dot,#fff)" d="M36.7,158.6c-4.7,0-8.7-3.8-8.7-8.3c-0.1-4.7,4-8.7,8.8-8.8c4.6,0,9,4.1,9,8.6C45.8,154.6,41.6,158.6,36.7,158.6z"/>
+	<path fill="var(--logo-dot,#fff)" d="M93.3,52.2c-5,0-9-3.8-9-8.5c0-4.6,4.2-8.5,9-8.5c4.8,0.1,8.6,3.8,8.7,8.4C102.2,48.4,98.3,52.2,93.3,52.2z"/>
+</g></symbol></svg>
+
+<!-- ============================================================ COVER -->
+<section class="cover">
+  <div class="cover-inner">
+    <div class="cover-top">
+      <svg class="cover-logo" viewBox="0 0 870.3 208" role="img" aria-label="Talk to FRANK"><use href="#frank-logo"/></svg>
+      <div>Design patterns · v1<br>Colour &amp; core components</div>
+    </div>
+    <h1>The Talk to FRANK colour system — one palette, organised by role, with <em>WCAG 2.2 AA</em> contrast checked on every pair.</h1>
+    <p class="lede">The working colour system for Talk to FRANK, taken from the live service — the defined CSS variables and the colours actually rendered on the page — then organised by the job each one does and verified for contrast. This is the reference to design and build against.</p>
+    <div class="cover-foot">
+      <div class="col"><strong>Source</strong>Live service CSS variables + measured on-page usage</div>
+      <div class="col"><strong>Standard</strong>WCAG 2.2 AA · every text pair verified</div>
+      <div class="col"><strong>Type</strong>Source Sans 3 · dotted-underline links</div>
+      <div class="col"><strong>Hero colour</strong>FRANK Blue #0072EE</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 01 STRUCTURE -->
+<section class="sec">
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-no">01</div>
+      <h2>How the system is <em>built</em>.</h2>
+      <div class="tag">Read this first</div>
+    </div>
+    <p class="sec-lede">Colours are grouped by <em>role</em>, not by hue. A colour's role tells you where it is allowed to appear — and, crucially, whether it may carry text. Several FRANK accents are vivid enough for a fill or an icon but too light to pass as text; the tables below say so plainly so the decision is never left to chance.</p>
+    <div class="plain">
+      <div class="p"><div class="n">Brand</div><h3>Blue leads, teal grounds</h3><p>FRANK Blue is the hero — links, buttons, interactive states. Deep Teal is the dark anchor for headers, panels and the wordmark. Teal is the quieter partner.</p></div>
+      <div class="p"><div class="n">Accents</div><h3>Expressive, used sparingly</h3><p>Pink for emphasis and alerts; green, yellow, cyan and the rest for state and category. Each has a defined job and a defined contrast ceiling.</p></div>
+      <div class="p"><div class="n">Neutrals</div><h3>Grey does the reading</h3><p>Body grey #4A4A4A carries almost all running text. Mid grey is for secondary copy; the palest grey is for lines and dividers only — never text.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 02 BRAND -->
+<section class="sec">
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-no">02</div>
+      <h2>Brand &amp; <em>primary</em>.</h2>
+      <div class="tag">Links · buttons · dark surfaces</div>
+    </div>
+    <p class="sec-lede">The dominant non-neutral on the page is a strong blue, defined as both <em>--primary</em> and <em>--blue</em>. Deep Teal is the dark brand accent that carries most panels and the logo. One caution worth designing around: FRANK Blue clears AA as text on white by a whisker, so it should sit on white or near-white — not on the grey surface.</p>
+    <div class="tokens">
+      <div class="trow head"><div></div><div>Token</div><div>Usage</div><div>Contrast</div><div>As text</div></div>
+
+      <div class="trow">
+        <div class="chip" style="background:#0072EE;"></div>
+        <div class="t-name">--frank-blue<span class="hex">#0072EE</span></div>
+        <div class="t-use">Primary. Links, primary buttons, interactive elements. The brand hero colour.</div>
+        <div class="t-ratio">4.52:1<small>on white</small></div>
+        <div><span class="badge aa">AA</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#0E3944;"></div>
+        <div class="t-name">--deep-teal<span class="hex">#0E3944</span></div>
+        <div class="t-use">Dark brand surface. Headers, footer, panels, the FRANK wordmark. The canonical dark.</div>
+        <div class="t-ratio">12.45:1<small>white on this</small></div>
+        <div><span class="badge aaa">AAA</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#235461;"></div>
+        <div class="t-name">--teal<span class="hex">#235461</span></div>
+        <div class="t-use">Secondary teal. Quieter dark panels, secondary headers, hover borders on light chips.</div>
+        <div class="t-ratio">8.36:1<small>white on this</small></div>
+        <div><span class="badge aaa">AAA</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 03 ACCENTS -->
+<section class="sec">
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-no">03</div>
+      <h2>Accent <em>colours</em>.</h2>
+      <div class="tag">Emphasis · state · category</div>
+    </div>
+    <p class="sec-lede">The expressive range. Read the <em>As&nbsp;text</em> column carefully: a <span class="badge fill">Fill only</span> colour is fine as a background, icon or bar but must never carry small text — pair it with dark ink instead. The pink is deliberately split into two tokens, because the vivid brand pink and the pink that can legally carry text are not the same value.</p>
+    <div class="tokens">
+      <div class="trow head"><div></div><div>Token</div><div>Usage</div><div>Contrast</div><div>As text</div></div>
+
+      <div class="trow divider">Pink · alerts &amp; emphasis <span class="lc">— dual token</span></div>
+      <div class="trow">
+        <div class="chip" style="background:#FC016A;"></div>
+        <div class="t-name">--pink<span class="hex">#FC016A</span></div>
+        <div class="t-use">The vivid brand pink. Large display, emphasis fills, the emergency accent bar, decorative moments.</div>
+        <div class="t-ratio">3.92:1<small>on white</small></div>
+        <div><span class="badge large">Large 24px+</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#D10058;"></div>
+        <div class="t-name">--pink-text<span class="hex">#D10058</span></div>
+        <div class="t-use">The pink that carries text and links. Use this wherever pink must be readable at body size — alert copy, emergency labels.</div>
+        <div class="t-ratio">5.45:1<small>on white</small></div>
+        <div><span class="badge aa">AA</span></div>
+      </div>
+
+      <div class="trow divider">State &amp; category</div>
+      <div class="trow">
+        <div class="chip" style="background:#78FF74;"></div>
+        <div class="t-name">--green<span class="hex">#78FF74</span></div>
+        <div class="t-use">Success. A bright signal green — use as a fill or tag background with dark ink on top. Never as text.</div>
+        <div class="t-ratio">1.28:1<small>on white</small></div>
+        <div><span class="badge fill">Fill only</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#F2C94C;"></div>
+        <div class="t-name">--yellow<span class="hex">#F2C94C</span></div>
+        <div class="t-use">Warning. A fill/tag colour; always pair with near-black text. Never as text on white.</div>
+        <div class="t-ratio">1.59:1<small>on white</small></div>
+        <div><span class="badge fill">Fill only</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#6610F2;"></div>
+        <div class="t-name">--indigo<span class="hex">#6610F2</span></div>
+        <div class="t-use">Deep accent. Safe as text and as a fill — a strong option where blue would clash with a link.</div>
+        <div class="t-ratio">7.19:1<small>on white</small></div>
+        <div><span class="badge aaa">AAA</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#CA24C2;"></div>
+        <div class="t-name">--purple<span class="hex">#CA24C2</span></div>
+        <div class="t-use">Accent. Category tags, secondary highlights. Passes as text at body size.</div>
+        <div class="t-ratio">4.62:1<small>on white</small></div>
+        <div><span class="badge aa">AA</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#17A2B8;"></div>
+        <div class="t-name">--cyan<span class="hex">#17A2B8</span></div>
+        <div class="t-use">Info. Informational callouts and top-borders. Reserve text use for large sizes; use as a fill/accent otherwise.</div>
+        <div class="t-ratio">3.04:1<small>on white</small></div>
+        <div><span class="badge large">Large 24px+</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#FD7E14;"></div>
+        <div class="t-name">--orange<span class="hex">#FD7E14</span></div>
+        <div class="t-use">Accent. Icons, bars, category fills. Too light for text on white — pair with dark ink.</div>
+        <div class="t-ratio">2.57:1<small>on white</small></div>
+        <div><span class="badge fill">Fill only</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#DC3545;"></div>
+        <div class="t-name">--red<span class="hex">#DC3545</span></div>
+        <div class="t-use">Error/danger. Form errors, destructive actions. Passes as text at body size.</div>
+        <div class="t-ratio">4.53:1<small>on white</small></div>
+        <div><span class="badge aa">AA</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 04 NEUTRALS -->
+<section class="sec">
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-no">04</div>
+      <h2>Neutrals &amp; <em>text</em>.</h2>
+      <div class="tag">The workhorses</div>
+    </div>
+    <p class="sec-lede">By usage volume, grey does most of the work on FRANK. <em>Body grey #4A4A4A</em> is the main running-text tone; mid grey handles secondary copy but sits close to the AA floor, so keep it off tinted backgrounds. The palest grey is structural only.</p>
+    <div class="tokens">
+      <div class="trow head"><div></div><div>Token</div><div>Usage</div><div>Contrast</div><div>As text</div></div>
+
+      <div class="trow">
+        <div class="chip" style="background:#0B0C0C;"></div>
+        <div class="t-name">--ink<span class="hex">#0B0C0C</span></div>
+        <div class="t-use">Near-black ink (the GDS text tone). Headings and primary text on light surfaces.</div>
+        <div class="t-ratio">20.1:1<small>on white</small></div>
+        <div><span class="badge aaa">AAA</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#4A4A4A;"></div>
+        <div class="t-name">--body<span class="hex">#4A4A4A</span></div>
+        <div class="t-use">Body grey — the most-used tone on the page. Running body copy, descriptions, list text.</div>
+        <div class="t-ratio">8.86:1<small>on white</small></div>
+        <div><span class="badge aaa">AAA</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#343A40;"></div>
+        <div class="t-name">--gray-dark<span class="hex">#343A40</span></div>
+        <div class="t-use">Dark grey. Strong secondary text, UI chrome, table headers.</div>
+        <div class="t-ratio">11.51:1<small>on white</small></div>
+        <div><span class="badge aaa">AAA</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#767676;"></div>
+        <div class="t-name">--mid<span class="hex">#767676</span></div>
+        <div class="t-use">Mid / secondary grey (<em>--secondary</em>). Captions, hint text, metadata. Sits right on the AA line — keep it on white, not on tints.</div>
+        <div class="t-ratio">4.54:1<small>on white</small></div>
+        <div><span class="badge aa">AA</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#ADB5BD;"></div>
+        <div class="t-name">--line<span class="hex">#ADB5BD</span></div>
+        <div class="t-use">Light grey. Borders, dividers, input outlines, disabled strokes. Structural only.</div>
+        <div class="t-ratio">2.07:1<small>on white</small></div>
+        <div><span class="badge deco">Non-text</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 05 SURFACES -->
+<section class="sec">
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-no">05</div>
+      <h2>Surfaces &amp; <em>tints</em>.</h2>
+      <div class="tag">Backgrounds</div>
+    </div>
+    <p class="sec-lede">The substrates everything sits on. White carries cards and long-form content; the light grey wash separates sections and quiet UI; the pink tint is the paired background for pink emphasis — and, usefully, <em>--pink-text</em> still clears AA on it.</p>
+    <div class="tokens">
+      <div class="trow head"><div></div><div>Token</div><div>Usage</div><div>Contrast</div><div>Status</div></div>
+
+      <div class="trow">
+        <div class="chip" style="background:#FFFFFF;border-color:#E5E9EA;"></div>
+        <div class="t-name">--white<span class="hex">#FFFFFF</span></div>
+        <div class="t-use">Primary content surface. Cards, dialogs, the reading column.</div>
+        <div class="t-ratio">20.1:1<small>ink on this</small></div>
+        <div><span class="badge aaa">AAA</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#F0F4F5;border-color:#D8DEE0;"></div>
+        <div class="t-name">--light<span class="hex">#F0F4F5</span></div>
+        <div class="t-use">Light background wash (<em>--light</em>). Page background, section separation, chip backgrounds.</div>
+        <div class="t-ratio">11.24:1<small>teal on this</small></div>
+        <div><span class="badge aaa">AAA</span></div>
+      </div>
+      <div class="trow">
+        <div class="chip" style="background:#FFEEF5;border-color:#F5C8DA;"></div>
+        <div class="t-name">--pink-tint<span class="hex">#FFEEF5</span></div>
+        <div class="t-use">Soft pink wash. Paired background for pink emphasis and the emergency strip. <em>--pink-text</em> stays readable on it.</div>
+        <div class="t-ratio">4.88:1<small>#D10058 on this</small></div>
+        <div><span class="badge aa">AA</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 06 MATRIX -->
+<section class="sec">
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-no">06</div>
+      <h2>Contrast matrix · <em>every critical pair</em>.</h2>
+      <div class="tag">The numbers, the verdict</div>
+    </div>
+    <p class="sec-lede">Every foreground-on-surface pairing that appears in the patterns below, with its verified WCAG 2.2 ratio. Paste any pair into the GOV.UK or Venngage contrast checker and you'll get the same figure. Anything <em>AA</em> or better is safe for body text; <em>Large only</em> pairs are for 24px+ / 18.66px-bold display.</p>
+    <div class="matrix">
+      <div class="mrow head">
+        <div class="mcell">Foreground</div><div class="mcell">Background</div><div class="mcell">Ratio</div><div class="mcell">AA body</div><div class="mcell">AAA body</div>
+      </div>
+      <div class="mrow">
+        <div class="mcell demo" style="background:#0E3944;color:#fff;">White heading</div>
+        <div class="mcell bg"><span class="minichip" style="background:#0E3944;"></span>--deep-teal</div>
+        <div class="mcell ratio">12.45:1</div>
+        <div class="mcell"><span class="badge aa">Pass</span></div>
+        <div class="mcell"><span class="badge aaa">Pass</span></div>
+      </div>
+      <div class="mrow">
+        <div class="mcell demo" style="background:#fff;color:#0072EE;">FRANK Blue link</div>
+        <div class="mcell bg"><span class="minichip" style="background:#fff;border-color:#E5E9EA;"></span>--white</div>
+        <div class="mcell ratio">4.52:1</div>
+        <div class="mcell"><span class="badge aa">Pass</span></div>
+        <div class="mcell"><span class="badge large">Large only</span></div>
+      </div>
+      <div class="mrow">
+        <div class="mcell demo" style="background:#F0F4F5;color:#0072EE;">Blue on the grey wash</div>
+        <div class="mcell bg"><span class="minichip" style="background:#F0F4F5;border-color:#D8DEE0;"></span>--light</div>
+        <div class="mcell ratio">4.09:1</div>
+        <div class="mcell"><span class="badge large">Large only</span></div>
+        <div class="mcell"><span class="badge deco">No</span></div>
+      </div>
+      <div class="mrow">
+        <div class="mcell demo" style="background:#fff;color:#4A4A4A;">Body grey copy</div>
+        <div class="mcell bg"><span class="minichip" style="background:#fff;border-color:#E5E9EA;"></span>--white</div>
+        <div class="mcell ratio">8.86:1</div>
+        <div class="mcell"><span class="badge aa">Pass</span></div>
+        <div class="mcell"><span class="badge aaa">Pass</span></div>
+      </div>
+      <div class="mrow">
+        <div class="mcell demo" style="background:#fff;color:#767676;">Mid-grey caption</div>
+        <div class="mcell bg"><span class="minichip" style="background:#fff;border-color:#E5E9EA;"></span>--white</div>
+        <div class="mcell ratio">4.54:1</div>
+        <div class="mcell"><span class="badge aa">Pass</span></div>
+        <div class="mcell"><span class="badge large">Large only</span></div>
+      </div>
+      <div class="mrow">
+        <div class="mcell demo" style="background:#fff;color:#D10058;">Pink alert text</div>
+        <div class="mcell bg"><span class="minichip" style="background:#fff;border-color:#E5E9EA;"></span>--white</div>
+        <div class="mcell ratio">5.45:1</div>
+        <div class="mcell"><span class="badge aa">Pass</span></div>
+        <div class="mcell"><span class="badge large">Large only</span></div>
+      </div>
+      <div class="mrow">
+        <div class="mcell demo" style="background:#FFEEF5;color:#D10058;">Pink on pink tint</div>
+        <div class="mcell bg"><span class="minichip" style="background:#FFEEF5;border-color:#F5C8DA;"></span>--pink-tint</div>
+        <div class="mcell ratio">4.88:1</div>
+        <div class="mcell"><span class="badge aa">Pass</span></div>
+        <div class="mcell"><span class="badge large">Large only</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 07 APPLIED -->
+<section class="sec">
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-no">07</div>
+      <h2>Applied · <em>component patterns</em>.</h2>
+      <div class="tag">The tokens in real UI</div>
+    </div>
+    <p class="sec-lede">The same tokens assembled into FRANK's actual patterns — rounded pill buttons, dotted-underline links, the above-the-fold emergency strip, category chips and dark teal panels. Every colour here is drawn from the tables above; nothing new is introduced.</p>
+
+    <div class="applied-grid">
+
+      <div class="demo-card">
+        <div class="demo-label"><span>Buttons</span><span class="ref">blue · pink-text</span></div>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#0">Find support near you</a>
+          <a class="btn btn-secondary" href="#0">Read more</a>
+        </div>
+        <div class="btn-row" style="margin-top:12px;">
+          <a class="btn btn-emergency" href="#0">Get help now</a>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-label"><span>Links in text</span><span class="ref">frank-blue · dotted</span></div>
+        <p class="prose-demo">Mixing alcohol with other drugs is riskier than using either on its own. If you're worried about someone, <a class="frank-link" href="#0">find out what to do in an emergency</a> or <a class="frank-link" href="#0">search the A–Z of drugs</a>.</p>
+      </div>
+
+      <div class="demo-card span">
+        <div class="demo-label"><span>Emergency strip · above the fold</span><span class="ref">pink-tint · pink-text</span></div>
+        <div class="emg">
+          <div class="emg-icon" aria-hidden="true">!</div>
+          <div class="emg-body"><strong>In an emergency, always call 999</strong>If someone is unconscious, having a fit, or can't be woken, don't wait. <a class="frank-link" style="color:var(--pink-text);" href="#0">What to do in an emergency</a></div>
+        </div>
+      </div>
+
+      <div class="demo-card span">
+        <div class="demo-label"><span>Drugs A–Z · category chips</span><span class="ref">light · deep-teal</span></div>
+        <div class="chips">
+          <a class="chip-pill" href="#0">Nitrous oxide</a>
+          <a class="chip-pill" href="#0">Ketamine</a>
+          <a class="chip-pill" href="#0">Psilocybin</a>
+          <a class="chip-pill" href="#0">Benzodiazepines</a>
+          <a class="chip-pill" href="#0">Ecstasy</a>
+          <a class="chip-pill" href="#0">Cocaine</a>
+          <a class="chip-pill" href="#0">Cannabis</a>
+          <a class="chip-pill" href="#0">Vapes</a>
+        </div>
+      </div>
+
+      <div class="teal-panel" style="grid-column:1 / -1;">
+        <h4>Contact FRANK</h4>
+        <p>Free and confidential, day or night. Call <strong style="color:#fff;">0300 1236600</strong>, text <strong style="color:#fff;">82111</strong>, or <a class="frank-link" href="#0">find a support centre near you</a>.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 08 CSS -->
+<section class="sec">
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-no">08</div>
+      <h2>Ready-to-paste · <em>CSS variables</em>.</h2>
+      <div class="tag">Drop into :root</div>
+    </div>
+    <p class="sec-lede">The complete token set as custom properties. Paste into <em>:root</em> and reference with <em>var(--token)</em>. Names describe the job; the two pink tokens keep the readable pink separate from the display pink.</p>
+    <div class="code"><span class="c">/* ================================================
+   TALK TO FRANK · COLOUR TOKENS · v1
+   WCAG 2.2 AA verified
+   ================================================ */</span>
+:root {
+  <span class="c">/* BRAND / PRIMARY */</span>
+  <span class="n">--frank-blue</span>:      <span class="v">#0072EE</span>;  <span class="c">/* links, CTAs — AA on white */</span>
+  <span class="n">--deep-teal</span>:       <span class="v">#0E3944</span>;  <span class="c">/* dark surface, wordmark */</span>
+  <span class="n">--teal</span>:            <span class="v">#235461</span>;
+
+  <span class="c">/* ACCENTS */</span>
+  <span class="n">--pink</span>:            <span class="v">#FC016A</span>;  <span class="c">/* display / fills only */</span>
+  <span class="n">--pink-text</span>:       <span class="v">#D10058</span>;  <span class="c">/* pink that carries text */</span>
+  <span class="n">--green</span>:           <span class="v">#78FF74</span>;  <span class="c">/* fill only + dark ink */</span>
+  <span class="n">--yellow</span>:          <span class="v">#F2C94C</span>;  <span class="c">/* fill only + dark ink */</span>
+  <span class="n">--indigo</span>:          <span class="v">#6610F2</span>;
+  <span class="n">--purple</span>:          <span class="v">#CA24C2</span>;
+  <span class="n">--cyan</span>:            <span class="v">#17A2B8</span>;  <span class="c">/* large / fill */</span>
+  <span class="n">--orange</span>:          <span class="v">#FD7E14</span>;  <span class="c">/* fill only + dark ink */</span>
+  <span class="n">--red</span>:             <span class="v">#DC3545</span>;
+
+  <span class="c">/* INK / NEUTRALS */</span>
+  <span class="n">--ink</span>:             <span class="v">#0B0C0C</span>;  <span class="c">/* GDS text tone */</span>
+  <span class="n">--body</span>:            <span class="v">#4A4A4A</span>;  <span class="c">/* main body text */</span>
+  <span class="n">--gray-dark</span>:       <span class="v">#343A40</span>;
+  <span class="n">--mid</span>:             <span class="v">#767676</span>;  <span class="c">/* secondary — on white only */</span>
+  <span class="n">--line</span>:            <span class="v">#ADB5BD</span>;  <span class="c">/* borders/dividers — non-text */</span>
+
+  <span class="c">/* SURFACES */</span>
+  <span class="n">--white</span>:           <span class="v">#FFFFFF</span>;
+  <span class="n">--light</span>:           <span class="v">#F0F4F5</span>;
+  <span class="n">--pink-tint</span>:       <span class="v">#FFEEF5</span>;
+}</div>
+  </div>
+</section>
+
+<!-- ============================================================ CLOSING -->
+<section class="closing">
+  <svg style="height:40px;width:auto;color:#fff;margin-bottom:22px;" viewBox="0 0 870.3 208" role="img" aria-label="Talk to FRANK"><use href="#frank-logo"/></svg>
+  <h2>One palette. <em>Every pair verified</em>. Ready to build.</h2>
+  <p>Design and build against these tokens. Where a colour can't carry text, the table says so — reach for the fill pattern instead, and the service stays accessible by default.</p>
+</section>
+
+</body>
+</html>

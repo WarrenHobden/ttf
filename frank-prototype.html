@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Talk to FRANK — consolidated review prototype (Homepage, Drug page, Emergency, Service unavailable).">
+    <title>Talk to FRANK — Prototype</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- ===========================================
+         PAGE: HOMEPAGE (hybrid search + browse)
+         =========================================== -->
+    <div class="page active" id="page-home">
+        <header class="frank-header">
+            <div class="frank-header-inner">
+                <div class="frank-header-left">
+                    <a href="#home" class="frank-logo" data-nav="home"><img src="assets/logo-frank--alt.svg" alt="Talk to FRANK" width="126" height="30"></a>
+                    <nav class="frank-nav" aria-label="Main navigation">
+                        <a href="#" class="frank-nav-link">Drugs A–Z</a>
+                        <a href="#" class="frank-nav-link">News</a>
+                        <a href="#" class="frank-nav-link">Help and advice</a>
+                        <a href="#" class="frank-nav-link">Contact</a>
+                    </nav>
+                </div>
+                <div class="frank-header-actions">
+                    <button class="frank-icon-btn" aria-label="Search the site">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                        <span class="label">Search</span>
+                    </button>
+                    <a href="tel:03001236600" class="frank-phone-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        0300 123 6600
+                    </a>
+                    <button class="frank-icon-btn frank-menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav-home">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="frank-mobile-nav" id="mobile-nav-home">
+                <a href="#">Drugs A–Z</a>
+                <a href="#">News</a>
+                <a href="#">Help and advice</a>
+                <a href="#emergency" data-nav="emergency">What to do in an emergency</a>
+                <a href="#">Contact</a>
+            </div>
+        </header>
+
+        <div class="frank-alert" role="alert">
+            <div class="frank-alert-inner">
+                <span class="frank-alert-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 3.83L19.53 19H4.47L12 5.83zM11 10v4h2v-4h-2zm0 6v2h2v-2h-2z"/></svg></span>
+                <span><strong>Drug warning:</strong> Nitazenes have killed 100s of people in the UK. These dangerous synthetic opioids are being found in other drugs. <a href="#">Find out more and how to stay safer</a></span>
+            </div>
+        </div>
+
+        <main id="main">
+            <div class="frank-hero">
+                <div class="frank-hero-inner">
+                    <div class="frank-hero-content">
+                        <h1><span>Honest information about drugs</span></h1>
+                    </div>
+                    <div class="frank-hero-image" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <div class="frank-search-section">
+                <div class="frank-search-section-inner">
+                    <label for="search-home" class="frank-search-label">Search for any drug</label>
+                    <div class="frank-search-box">
+                        <input type="search" id="search-home" class="frank-search-input" placeholder="Enter a drug name or street name…" autocomplete="off">
+                        <button class="frank-search-submit" type="submit" data-nav="drug">
+                            Search
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="frank-drug-chips">
+                <div class="frank-drug-chips-list">
+                    <a href="#drug" class="frank-drug-chip" data-nav="drug">Cocaine</a>
+                    <a href="#drug" class="frank-drug-chip" data-nav="drug">Ketamine</a>
+                    <a href="#drug" class="frank-drug-chip" data-nav="drug">MDMA / Ecstasy</a>
+                    <a href="#drug" class="frank-drug-chip" data-nav="drug">Cannabis</a>
+                    <a href="#drug" class="frank-drug-chip" data-nav="drug">Magic mushrooms</a>
+                    <a href="#drug" class="frank-drug-chip" data-nav="drug">LSD</a>
+                    <a href="#drug" class="frank-drug-chip" data-nav="drug">Nitrous oxide</a>
+                    <a href="#drug" class="frank-drug-chip" data-nav="drug">Benzos</a>
+                </div>
+            </div>
+
+            <div class="frank-az-link">
+                <a href="#" class="frank-link-arrow">
+                    View all drugs A–Z
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <!-- Emergency callout: kept prominent and standalone for crisis visibility -->
+            <div class="frank-emergency">
+                <span class="frank-emergency-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 3.83L19.53 19H4.47L12 5.83zM11 10v4h2v-4h-2zm0 6v2h2v-2h-2z"/></svg></span>
+                <div class="frank-emergency-content">
+                    <div class="frank-emergency-header"><h3>Need help right now?</h3></div>
+                    <p>If someone's in danger, call 999. Tell them everything you know about what was taken — it could save their life.</p>
+                    <a href="#emergency" class="frank-link-arrow" data-nav="emergency">
+                        What to do in an emergency
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <section class="frank-section frank-section--grey">
+                <div class="frank-help-grid">
+                    <div class="frank-help-block">
+                        <h3><span>Worried about…</span></h3>
+                        <div class="frank-help-block-links">
+                            <a href="#" class="frank-link-arrow">A friend <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                            <a href="#" class="frank-link-arrow">Your child <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                            <a href="#" class="frank-link-arrow">Yourself <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                    </div>
+                    <div class="frank-help-block">
+                        <h3><span>Get support</span></h3>
+                        <div class="frank-help-block-links">
+                            <a href="#" class="frank-link-arrow">Find local services <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                            <a href="#" class="frank-link-arrow">Talk to someone <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                            <a href="#" class="frank-link-arrow">What happens when you call <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="frank-footer">
+            <div class="frank-footer-inner">
+                <div class="frank-footer-top">
+                    <div class="frank-footer-contact">
+                        <h3>Talk to FRANK</h3>
+                        <a href="tel:03001236600" class="frank-footer-phone">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            0300 123 6600
+                        </a>
+                        <div class="frank-footer-contact-links">
+                            <a href="#">Email FRANK</a>
+                            <a href="#">Text 82111</a>
+                            <a href="#">Live chat</a>
+                        </div>
+                    </div>
+                    <nav class="frank-footer-nav" aria-label="Footer navigation">
+                        <div class="frank-footer-nav-section">
+                            <h4>Drugs information</h4>
+                            <ul>
+                                <li><a href="#">Drugs A–Z</a></li>
+                                <li><a href="#">Drug effects</a></li>
+                                <li><a href="#">Mixing drugs</a></li>
+                                <li><a href="#">The law</a></li>
+                            </ul>
+                        </div>
+                        <div class="frank-footer-nav-section">
+                            <h4>Get help</h4>
+                            <ul>
+                                <li><a href="#">Find local support</a></li>
+                                <li><a href="#">Worried about a friend</a></li>
+                                <li><a href="#">Worried about your child</a></li>
+                                <li><a href="#emergency" data-nav="emergency">What to do in an emergency</a></li>
+                            </ul>
+                        </div>
+                        <div class="frank-footer-nav-section">
+                            <h4>About FRANK</h4>
+                            <ul>
+                                <li><a href="#">News and articles</a></li>
+                                <li><a href="#">Resources for professionals</a></li>
+                                <li><a href="#">Contact us</a></li>
+                                <li><a href="#">Feedback</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="frank-footer-bottom">
+                    <a href="#">Privacy policy</a>
+                    <a href="#">Terms and conditions</a>
+                    <a href="#">Disclaimer</a>
+                    <a href="#">Accessibility statement</a>
+                    <span>© Crown copyright</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ===========================================
+         PAGE: DRUG (Tier-1 redesign) — ketamine instance
+         =========================================== -->
+    <div class="page" id="page-drug">
+        <header class="frank-header">
+            <div class="frank-header-inner">
+                <div class="frank-header-left">
+                    <a href="#home" class="frank-logo" data-nav="home"><img src="assets/logo-frank--alt.svg" alt="Talk to FRANK" width="126" height="30"></a>
+                    <nav class="frank-nav" aria-label="Main navigation">
+                        <a href="#" class="frank-nav-link active">Drugs A–Z</a>
+                        <a href="#" class="frank-nav-link">News</a>
+                        <a href="#" class="frank-nav-link">Help and advice</a>
+                        <a href="#" class="frank-nav-link">Contact</a>
+                    </nav>
+                </div>
+                <div class="frank-header-actions">
+                    <button class="frank-icon-btn" aria-label="Search the site">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                        <span class="label">Search</span>
+                    </button>
+                    <a href="tel:03001236600" class="frank-phone-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        0300 123 6600
+                    </a>
+                    <button class="frank-icon-btn frank-menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav-drug">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="frank-mobile-nav" id="mobile-nav-drug">
+                <a href="#">Drugs A–Z</a>
+                <a href="#">News</a>
+                <a href="#">Help and advice</a>
+                <a href="#emergency" data-nav="emergency">What to do in an emergency</a>
+                <a href="#">Contact</a>
+            </div>
+        </header>
+
+        <div class="frank-alert" role="alert">
+            <div class="frank-alert-inner">
+                <span class="frank-alert-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 3.83L19.53 19H4.47L12 5.83zM11 10v4h2v-4h-2zm0 6v2h2v-2h-2z"/></svg></span>
+                <span><strong>Drug warning:</strong> Street drugs are increasingly cut with synthetic opioids like nitazenes, which have killed 100s in the UK. You can never know what's really in a powder. <a href="#">Find out more</a></span>
+            </div>
+        </div>
+
+        <nav class="frank-breadcrumb" aria-label="Breadcrumb">
+            <div class="frank-breadcrumb-inner"><a href="#home" data-nav="home">Home</a><span class="frank-breadcrumb-sep" aria-hidden="true">&gt;</span><a href="#">Drugs A–Z</a><span class="frank-breadcrumb-sep" aria-hidden="true">&gt;</span>Ketamine</div>
+        </nav>
+
+        <main class="drug-main" id="main-drug">
+            <!-- TEMPLATE: title block -->
+            <div class="drug-title-block">
+                <span class="drug-class-tag">Class B</span>
+                <h1>Ketamine</h1>
+                <p class="drug-also-known"><strong>Also called:</strong> Ket, K, Special K, Wonk, Vitamin K</p>
+                <p class="drug-standfirst">A powerful anaesthetic used in human and animal medicine. Looks similar to cocaine, but is a very different drug.</p>
+                <p class="drug-meta">Last reviewed: June 2026</p>
+            </div>
+
+            <!-- AT A GLANCE -->
+            <div class="at-a-glance">
+                <h2>At a glance</h2>
+                <div class="glance-grid">
+                    <div class="glance-item"><span class="label">What it is</span><span class="value">A dissociative anaesthetic. A grainy white or light brown powder.</span></div>
+                    <div class="glance-item"><span class="label">How it's taken</span><span class="value">Usually snorted ("a bump"). Sometimes injected into a muscle.</span></div>
+                    <div class="glance-item"><span class="label">How long it lasts</span><span class="value">Felt in ~15 mins if snorted. The buzz lasts 30 mins–1 hour.</span></div>
+                    <div class="glance-item"><span class="label">The law</span><span class="value">Class B. Illegal to have, give away or sell.</span></div>
+                </div>
+            </div>
+
+            <!-- KEY RISKS & WHAT TO DO NOW — visible safety panel -->
+            <section class="safety-panel" aria-labelledby="drug-safety-heading">
+                <div class="safety-panel-header">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L1 21h22L12 2zm0 3.83L19.53 19H4.47L12 5.83zM11 10v4h2v-4h-2zm0 6v2h2v-2h-2z"/></svg>
+                    <h2 id="drug-safety-heading">Key risks &amp; what to do now</h2>
+                </div>
+                <div class="safety-panel-body">
+                    <ul class="safety-list">
+                        <li>Regular use can cause serious, sometimes permanent, bladder damage.</li>
+                        <li>You don't feel pain properly, so you can badly injure yourself without realising.</li>
+                        <li>Too much can put you in a "k-hole" — unable to move and feeling cut off from your body.</li>
+                        <li>Mixing with alcohol, benzos or opioids can stop your breathing. This can be fatal.</li>
+                    </ul>
+                    <div class="safety-action">
+                        <strong>If someone is unconscious, can't be woken, or is struggling to breathe:</strong>
+                        <a href="tel:999" class="safety-call-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            Call 999
+                        </a>
+                        <a href="#emergency" class="frank-link-arrow" data-nav="emergency">
+                            What to do in an emergency
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MIXING — first-class entry near top -->
+            <section class="mixing-module" aria-labelledby="drug-mixing-heading">
+                <div class="mixing-module-header">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3h6M10 3v6L5 18a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg>
+                    <h2 id="drug-mixing-heading">Mixing ketamine with other drugs</h2>
+                </div>
+                <div class="mixing-module-body">
+                    <p>Mixing is always risky, but some combinations are far more dangerous than others. With ketamine, these can slow or stop your breathing:</p>
+                    <div class="mixing-danger">
+                        <span class="mixing-tag">+ Alcohol</span>
+                        <span class="mixing-tag">+ Benzodiazepines</span>
+                        <span class="mixing-tag">+ Opioids</span>
+                    </div>
+                    <a href="#" class="frank-link-arrow">
+                        Check a specific combination
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </section>
+
+            <!-- JUMP LINKS -->
+            <nav class="jump-nav" aria-label="On this page">
+                <h2>On this page</h2>
+                <ul>
+                    <li><a href="#drug-effects">How it feels</a></li>
+                    <li><a href="#drug-risks">The risks in detail</a></li>
+                    <li><a href="#drug-looks">How it looks &amp; is taken</a></li>
+                    <li><a href="#drug-addiction">Can you get addicted?</a></li>
+                    <li><a href="#drug-law">The law</a></li>
+                    <li><a href="#drug-help">Getting help</a></li>
+                </ul>
+            </nav>
+
+            <section class="drug-section" id="drug-effects">
+                <h2>How it feels</h2>
+                <p>Ketamine is a dissociative drug — it produces a feeling of detachment from your body and the world around you. It can make people seem slower, more relaxed and chilled out, but it can also stop them moving properly or making sense.</p>
+                <p>How long the effects last depends on how much you've taken, your size, and what else you've taken. People may feel low in mood for a few days afterwards.</p>
+            </section>
+
+            <section class="drug-section" id="drug-risks">
+                <h2>The risks in detail</h2>
+                <ul class="bullet-list">
+                    <li>Because you don't feel pain properly, you can injure yourself and not know it.</li>
+                    <li>Taking too much can leave you unable to move and unaware of your surroundings (a "k-hole"), which can be very frightening.</li>
+                    <li>Regular use is linked to serious bladder problems — some people need ongoing medical treatment, and damage can be permanent.</li>
+                    <li>It's impossible to tell by looking whether ketamine has been cut with something else.</li>
+                    <li>Never use alone — make sure people you trust know what you've taken and how much.</li>
+                </ul>
+            </section>
+
+            <div class="accordion" id="drug-looks">
+                <button class="accordion-trigger" aria-expanded="false">
+                    How it looks, tastes &amp; how people take it
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="accordion-panel">
+                    <p>Ketamine is usually sold as a grainy white or light brown powder. It tastes bitter and unpleasant.</p>
+                    <p>Most people who use powder ketamine snort it — taking a small amount is often called "a bump". Snorting is the most common way to take it in the UK. People who use it regularly sometimes inject it into a muscle for a bigger hit.</p>
+                </div>
+            </div>
+
+            <div class="accordion" id="drug-addiction">
+                <button class="accordion-trigger" aria-expanded="false">
+                    Can you get addicted?
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="accordion-panel">
+                    <p>Yes. People who become addicted will keep taking it whether or not they're aware of the health risks. Regular use builds tolerance, which can lead to taking more to get the same effect.</p>
+                    <p>There are no physical withdrawal symptoms, so ketamine addiction is sometimes called a psychological dependence. Drug treatment services can help people stop.</p>
+                </div>
+            </div>
+
+            <div class="accordion" id="drug-law">
+                <button class="accordion-trigger" aria-expanded="false">
+                    The law
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="accordion-panel">
+                    <p>Ketamine is a Class B drug. That means it's illegal to have for yourself, give away or sell.</p>
+                    <ul class="bullet-list">
+                        <li>Possession can get you up to 5 years in prison, an unlimited fine, or both.</li>
+                        <li>Supplying someone else — even your friends — can get you up to 14 years in prison, an unlimited fine, or both.</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <section class="get-help-module" id="drug-help" aria-labelledby="drug-help-heading">
+            <div class="get-help-inner">
+                <h2 id="drug-help-heading">Worried about ketamine — yours or someone else's?</h2>
+                <div class="get-help-options">
+                    <div class="get-help-card">
+                        <h3>Worried about your own use</h3>
+                        <p>Honest, confidential advice and the next steps you can take.</p>
+                        <a href="#" class="frank-link-arrow">Get advice <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    </div>
+                    <div class="get-help-card">
+                        <h3>Find support near you</h3>
+                        <p>Free, local drug treatment and support services.</p>
+                        <a href="#" class="frank-link-arrow">Search by area <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    </div>
+                </div>
+                <div class="talk-row">
+                    <a href="tel:03001236600" class="talk-phone">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        Call FRANK: 0300 123 6600
+                    </a>
+                    <a href="#" class="frank-link-arrow">Or chat online <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+                <div class="gh-confidential">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                    <span>Everything you tell FRANK is confidential. We're here to help, not judge.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="related-drugs" aria-labelledby="drug-related-heading">
+            <h2 id="drug-related-heading">People also looked at</h2>
+            <div class="related-list">
+                <a href="#drug" class="related-chip" data-nav="drug">Cocaine</a>
+                <a href="#drug" class="related-chip" data-nav="drug">MDMA / Ecstasy</a>
+                <a href="#drug" class="related-chip" data-nav="drug">Methoxetamine (MXE)</a>
+                <a href="#drug" class="related-chip" data-nav="drug">Benzodiazepines</a>
+            </div>
+        </section>
+
+        <footer class="frank-footer">
+            <div class="frank-footer-inner">
+                <div class="frank-footer-bottom" style="border-top:none;">
+                    <a href="#home" data-nav="home">Home</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Accessibility</a>
+                    <a href="#">Feedback</a>
+                    <span>© Crown copyright</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ===========================================
+         PAGE: EMERGENCY (stress-state redesign)
+         Steve's feedback applied — see code comments.
+         =========================================== -->
+    <div class="page" id="page-emergency">
+        <header class="frank-header">
+            <div class="frank-header-inner">
+                <div class="frank-header-left">
+                    <a href="#home" class="frank-logo" data-nav="home"><img src="assets/logo-frank--alt.svg" alt="Talk to FRANK" width="126" height="30"></a>
+                    <nav class="frank-nav" aria-label="Main navigation">
+                        <a href="#" class="frank-nav-link">Drugs A–Z</a>
+                        <a href="#" class="frank-nav-link">Drug effects</a>
+                        <a href="#emergency" class="frank-nav-link active" data-nav="emergency">Get help</a>
+                        <a href="#" class="frank-nav-link">News</a>
+                        <a href="#" class="frank-nav-link">About</a>
+                    </nav>
+                </div>
+                <div class="frank-header-actions">
+                    <button class="frank-icon-btn" aria-label="Search drugs">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                        <span class="label">Search</span>
+                    </button>
+                    <a href="tel:03001236600" class="frank-phone-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        0300 123 6600
+                    </a>
+                    <button class="frank-icon-btn frank-menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav-emergency">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="frank-mobile-nav" id="mobile-nav-emergency">
+                <a href="#">Drugs A–Z</a>
+                <a href="#">Drug effects</a>
+                <a href="#emergency" data-nav="emergency">Get help</a>
+                <a href="#">News</a>
+                <a href="#">About</a>
+            </div>
+        </header>
+
+        <nav class="frank-breadcrumb" aria-label="Breadcrumb">
+            <div class="frank-breadcrumb-inner frank-breadcrumb-inner--wide"><a href="#home" data-nav="home">Home</a><span class="frank-breadcrumb-sep" aria-hidden="true">&gt;</span><a href="#">Get help</a><span class="frank-breadcrumb-sep" aria-hidden="true">&gt;</span>What to do in an emergency</div>
+        </nav>
+
+        <main id="main-emergency">
+            <!-- CRITICAL: 999 banner at the very top -->
+            <div class="emergency-critical" role="alert" aria-live="assertive">
+                <div class="emergency-critical-inner">
+                    <div class="emergency-critical-content">
+                        <div class="emergency-critical-header">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M12 2L1 21h22L12 2zm0 3.83L19.53 19H4.47L12 5.83zM11 10v4h2v-4h-2zm0 6v2h2v-2h-2z"/></svg>
+                            <h2>Call 999 NOW if they:</h2>
+                        </div>
+                        <ul class="emergency-critical-list">
+                            <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Are unconscious or won't wake up</li>
+                            <!-- EDIT (Steve): "or stopped" → "or have stopped" -->
+                            <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Have difficulty breathing or have stopped</li>
+                            <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Have blue lips or fingertips</li>
+                            <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Are having a seizure (fit)</li>
+                        </ul>
+                    </div>
+                    <div class="emergency-action-panel">
+                        <a href="tel:999" class="emergency-call-btn">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            Call 999
+                        </a>
+                        <div class="emergency-reassurance">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                            <!-- EDIT (Steve): cannot say they "won't" call police -->
+                            <span>Ambulance crews won't usually call the police. Your safety comes first.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Script + while-you-wait -->
+            <div class="action-grid">
+                <div class="script-section">
+                    <h3>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        What to tell the 999 operator
+                    </h3>
+                    <div class="script-box">
+                        "I need an ambulance. My friend has taken <span class="blank">drug name</span> and they are <span class="blank">describe symptoms</span>. We are at <span class="blank">your location</span>."
+                    </div>
+                    <!-- EDIT (Steve): add naloxone line for people who carry it -->
+                    <div class="script-box script-box--addition">
+                        <span class="script-addition-label">If you carry naloxone, also tell them:</span>
+                        "I have naloxone on me."
+                    </div>
+                </div>
+
+                <div class="steps-section">
+                    <h3>While you wait for the ambulance</h3>
+                    <!-- EDITS (Steve): added CPR (after 1), "if they're awake" qualifier
+                         on keep-them-calm, and naloxone before the recovery-position step. -->
+                    <div class="step-item">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <strong>Stay with them</strong>
+                            <p>Don't leave them alone, even for a moment</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <strong>If they aren't breathing, start CPR</strong>
+                            <p>The 999 operator will talk you through it</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <strong>If they're awake, keep them calm</strong>
+                            <p>Speak softly, don't shout or shake them</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number">4</span>
+                        <div class="step-content">
+                            <strong>If you have naloxone and think it's an opioid overdose, use it</strong>
+                            <p>Follow the instructions on the kit and tell the crew you've given it</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number">5</span>
+                        <div class="step-content">
+                            <strong>If they're unconscious but breathing: recovery position</strong>
+                            <p>Lie them on their side so they can breathe</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number">6</span>
+                        <div class="step-content">
+                            <strong>Gather any drugs left over</strong>
+                            <p>Give them to the ambulance crew — it helps treatment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Specific situations -->
+            <div class="scenario-section">
+                <div class="scenario-section-inner">
+                    <h3>What to do in specific situations</h3>
+                    <div class="scenario-grid">
+                        <!-- EDIT (Steve): dedicated opioid-overdose / naloxone card -->
+                        <div class="scenario-card scenario-card--opioid">
+                            <button class="scenario-header" aria-expanded="false">
+                                <span>If you think it's an opioid overdose</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="scenario-content">
+                                <p style="margin:var(--space-sm) 0;">Opioids include heroin, methadone, some prescription painkillers and nitazenes. Signs of an overdose:</p>
+                                <ul>
+                                    <li>Very slow or stopped breathing</li>
+                                    <li>Blue or grey lips or fingertips</li>
+                                    <li>Can't be woken</li>
+                                    <li>Very small "pinpoint" pupils</li>
+                                </ul>
+                                <p style="margin-top:var(--space-sm);"><strong>Call 999.</strong> If you have naloxone, use it now — it reverses an opioid overdose. If they aren't breathing, start CPR.</p>
+                            </div>
+                        </div>
+
+                        <div class="scenario-card">
+                            <button class="scenario-header" aria-expanded="false">
+                                <span>If they're panicking or hallucinating</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="scenario-content">
+                                <ul>
+                                    <li>Move them to a quiet, calm space</li>
+                                    <li>Keep them away from bright lights and loud noise</li>
+                                    <li>Speak calmly and reassuringly</li>
+                                    <li>Encourage slow, deep breaths</li>
+                                    <li>Stay with them until they feel better</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="scenario-card">
+                            <button class="scenario-header" aria-expanded="false">
+                                <span>If they're overheating</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="scenario-content">
+                                <ul>
+                                    <li>Move them somewhere cool</li>
+                                    <li>Remove excess clothing</li>
+                                    <li>Sip water slowly (not too fast)</li>
+                                    <li>Fan them or use a cool cloth</li>
+                                    <li>Call 999 if their temperature doesn't drop</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="scenario-card">
+                            <button class="scenario-header" aria-expanded="false">
+                                <span>If they're drowsy and hard to wake</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="scenario-content">
+                                <ul>
+                                    <li>Keep them sitting up if possible</li>
+                                    <li>Talk to them to keep them awake</li>
+                                    <li><strong>Don't</strong> give them coffee</li>
+                                    <li><strong>Don't</strong> put them in a cold bath</li>
+                                    <li>If you can't wake them: call 999 immediately</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recovery position -->
+            <div class="recovery-section">
+                <div class="recovery-section-inner">
+                    <h3>Recovery position</h3>
+                    <p class="recovery-intro">Use this if someone is unconscious but breathing.</p>
+                    <div class="recovery-layout">
+                        <div class="recovery-steps">
+                            <div class="recovery-step"><p>Tilt their head back and lift their chin to open the airway</p></div>
+                            <div class="recovery-step"><p>Lie them on their side with their legs straight</p></div>
+                            <div class="recovery-step"><p>Place their nearest arm at right angles to their body</p></div>
+                            <div class="recovery-step"><p>Pull the far leg up and roll them towards you</p></div>
+                            <div class="recovery-step"><p>Keep their head tilted back so the airway stays open</p></div>
+                        </div>
+                        <div class="recovery-diagram">
+                            <div class="recovery-diagram-images">
+                                <figure>
+                                    <img src="assets/recovery-1.jpg" width="550" height="280" loading="lazy"
+                                         alt="Step 1: person on their back, airway open, nearest arm placed at a right angle">
+                                    <figcaption>Step 1: Position the person and open the airway</figcaption>
+                                </figure>
+                                <figure>
+                                    <img src="assets/recovery-2.jpg" width="550" height="245" loading="lazy"
+                                         alt="Step 2: rolling the person onto their side by pulling the far leg up and rolling them towards you">
+                                    <figcaption>Step 2: Roll them onto their side</figcaption>
+                                </figure>
+                                <figure>
+                                    <img src="assets/recovery-3.jpg" width="550" height="205" loading="lazy"
+                                         alt="The completed recovery position: on their side, head tilted back, upper leg bent to stay stable">
+                                    <figcaption>Recovery position — keeps the airway clear if they vomit</figcaption>
+                                </figure>
+                            </div>
+                            <p style="margin-top:var(--space-sm);">
+                                <a href="https://www.nhs.uk/conditions/first-aid/recovery-position/" class="frank-link-arrow" target="_blank" rel="noopener">
+                                    NHS video guide
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post-crisis: aftercare + talk -->
+            <div class="post-crisis-inner">
+                <div class="post-crisis-grid">
+                    <div class="aftercare-section">
+                        <h3>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                            After the emergency
+                        </h3>
+                        <p>It's normal to feel shaky, anxious or drained after helping someone. Here's what to expect:</p>
+                        <ul class="aftercare-list">
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>You may feel anxious for a few hours</strong> — this is normal and will pass</span></li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Drink water and eat something</strong> when you feel able</span></li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Talk to someone</strong> about what happened — don't bottle it up</span></li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Rest when you can</strong> — your body needs time to recover too</span></li>
+                        </ul>
+                        <div class="aftercare-cta">
+                            <a href="#" class="frank-link-arrow">
+                                If you're still feeling worried, talk to us
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="talk-section">
+                        <h3>Need to talk it through?</h3>
+                        <div class="talk-options">
+                            <a href="tel:03001236600" class="talk-option">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                <strong>Call us</strong>
+                                <span>0300 123 6600</span>
+                            </a>
+                            <a href="#" class="talk-option">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                <strong>Live chat</strong>
+                                <span>Online now</span>
+                            </a>
+                        </div>
+                        <div class="talk-confidential">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                            <span>Everything you tell us is confidential. We're here to help, not judge.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="frank-footer">
+                <div class="frank-footer-inner">
+                    <div class="frank-footer-bottom" style="border-top:none;">
+                        <a href="#home" data-nav="home">Home</a>
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Accessibility</a>
+                        <a href="#">Feedback</a>
+                        <span>© Crown copyright</span>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- ===========================================
+         PAGE: SERVICE UNAVAILABLE
+         =========================================== -->
+    <div class="page" id="page-unavailable">
+        <header class="frank-header">
+            <div class="frank-header-inner">
+                <div class="frank-header-left">
+                    <a href="#home" class="frank-logo" data-nav="home"><img src="assets/logo-frank--alt.svg" alt="Talk to FRANK" width="126" height="30"></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="unavailable-main" id="main-unavailable">
+            <div class="status-block" role="status">
+                <h1>Sorry, the website is temporarily unavailable</h1>
+                <p>We're working to fix this. Please try again later.</p>
+            </div>
+
+            <div class="unavailable-emergency" role="alert" aria-labelledby="unavailable-emergency-heading">
+                <div class="emergency-header">
+                    <span class="frank-emergency-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 3.83L19.53 19H4.47L12 5.83zM11 10v4h2v-4h-2zm0 6v2h2v-2h-2z"/></svg></span>
+                    <h2 id="unavailable-emergency-heading">Need urgent help?</h2>
+                </div>
+                <p>If someone has taken drugs and needs medical help, <strong>call 999 for an ambulance</strong>. Tell them what was taken — it could save a life.</p>
+                <a href="tel:999" class="emergency-999">Call 999</a>
+            </div>
+
+            <div class="contact-block">
+                <h2>You can still talk to FRANK</h2>
+                <p>Our helpline and text service are available while the website is down.</p>
+                <div class="contact-options">
+                    <a href="tel:03001236600" class="contact-option">
+                        <span class="contact-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span>
+                        <span class="contact-details">
+                            <span class="contact-method">Call free</span>
+                            <span class="contact-value">0300 123 6600</span>
+                            <span class="contact-note">Open daily, 2pm – 11pm</span>
+                        </span>
+                    </a>
+                    <a href="sms:82111" class="contact-option">
+                        <span class="contact-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/><path d="M7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg></span>
+                        <span class="contact-details">
+                            <span class="contact-method">Text</span>
+                            <span class="contact-value">82111</span>
+                            <span class="contact-note">If you can't talk or prefer to text</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="about-block">
+                <h2>What is Talk to FRANK?</h2>
+                <p>FRANK is the national drugs information and advice service. We provide honest information about drugs, their effects and the law — plus confidential support if you're worried about yourself or someone else.</p>
+            </div>
+        </main>
+
+        <footer class="frank-footer">
+            <div class="frank-footer-inner">
+                <div class="frank-footer-bottom" style="border-top:none;">
+                    <a href="#home" data-nav="home">Home</a>
+                    <span>A service from the Department of Health and Social Care</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

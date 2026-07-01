@@ -3,9 +3,15 @@
 A shareable review prototype for **Talk to FRANK**, built with plain HTML, CSS, and
 JavaScript — **no build step**. It consolidates several page designs into one master build.
 
+## Index page
+
+`index.html` is a **prototype index** (landing page): it lists the master build and links to
+each individual page, so reviewers and the client can see every element in one place. The full
+prototype itself lives in **`frank-prototype.html`**.
+
 ## Pages
 
-Client-side routing shows one page at a time. A review-only **prototype bar** (fixed to the top)
+The master build (`frank-prototype.html`) uses client-side routing to show one page at a time. A review-only **prototype bar** (fixed to the top)
 lets reviewers jump between them; the real in-page links also navigate. The four pages are:
 
 1. **Homepage** — hybrid search + browse, drug chips, prominent emergency callout.
@@ -30,7 +36,8 @@ python3 -m http.server 8000
 
 ```
 .
-├── index.html          # Markup for all pages + prototype bar
+├── index.html          # Prototype index (landing page) — links to the build + each page
+├── frank-prototype.html # Master build: markup for all pages + prototype bar
 ├── css/
 │   └── styles.css      # FRANK design system + @font-face
 ├── js/
@@ -69,7 +76,7 @@ Preconfigured for both — pick one; every push to `main` auto-deploys:
 
 ## Develop
 
-- Edit page markup in `index.html`; refresh the browser (no rebuild).
+- Edit page markup in `frank-prototype.html`; refresh the browser (no rebuild).
 - Restyle via the design tokens in `:root` at the top of `css/styles.css`.
 - Add behaviour in `js/main.js`.
 - New designs go in `prototype/designs/` — see `prototype/README.md` for the workflow.
