@@ -611,9 +611,10 @@
             padding: var(--space-sm) var(--space-md);
             font-size: 14px;
             color: var(--frank-grey-700);
-            background: var(--frank-grey-100);
+            background: var(--frank-white);
         }
-        .frank-breadcrumb a { color: var(--frank-grey-700); }
+        .frank-breadcrumb a { color: var(--frank-navy); font-weight: 700; }
+        .frank-breadcrumb-sep { margin: 0 var(--space-sm); color: var(--frank-grey-700); }
 
         /* Critical 999 banner */
         .emergency-critical {
@@ -939,6 +940,7 @@
            mixing near top, accordions for secondary only.
            =========================================== */
         .frank-breadcrumb-inner { max-width: var(--reading-width); margin: 0 auto; padding: var(--space-sm) var(--space-md); }
+        .frank-breadcrumb-inner--wide { max-width: var(--content-width); }
         .drug-main { max-width: var(--reading-width); margin: 0 auto; padding: 0 var(--space-md) var(--space-2xl); }
         .drug-section, .accordion { scroll-margin-top: 120px; }
 
