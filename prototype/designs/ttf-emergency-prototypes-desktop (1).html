@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talk to Frank â€” Emergency Help Page Prototypes (Desktop)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===========================================
+           TALK TO FRANK DESIGN SYSTEM
+           Desktop viewport adaptation
+           =========================================== */
+        
+        :root {
+            /* Core palette */
+            --frank-navy: #0b3954;
+            --frank-pink: #e6007e;
+            --frank-pink-light: #fce8f3;
+            --frank-teal: #00a3a5;
+            
+            /* Semantic colours */
+            --frank-emergency: #d4351c;
+            --frank-emergency-bg: #fef3f1;
+            --frank-warning-bg: #e6007e;
+            --frank-success: #00703c;
+            --frank-success-bg: #e8f5ee;
+            
+            /* Neutrals */
+            --frank-white: #ffffff;
+            --frank-grey-100: #f8f8f8;
+            --frank-grey-200: #e8e8e8;
+            --frank-grey-300: #b1b4b6;
+            --frank-grey-700: #505a5f;
+            --frank-grey-900: #1a1a1a;
+            
+            /* Typography */
+            --font-stack: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            /* Spacing scale */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            --space-4xl: 96px;
+            
+            /* Layout - Desktop */
+            --max-width: 1200px;
+            --content-width: 960px;
+            --readable-width: 720px;
+            --nav-height: 72px;
+        }
+        
+        /* ===========================================
+           RESET & BASE
+           =========================================== */
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-stack);
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--frank-grey-900);
+            background: var(--frank-white);
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+            font-weight: 700;
+        }
+        
+        p {
+            margin: 0;
+        }
+        
+        a {
+            color: var(--frank-navy);
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 3px;
+        }
+        
+        a:hover {
+            text-decoration-style: solid;
+        }
+        
+        a:focus {
+            outline: 3px solid var(--frank-pink);
+            outline-offset: 2px;
+        }
+        
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        /* Skip link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--frank-navy);
+            color: var(--frank-white);
+            padding: var(--space-sm) var(--space-md);
+            z-index: 9999;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* ===========================================
+           PROTOTYPE SWITCHER
+           =========================================== */
+        
+        .prototype-nav {
+            background: var(--frank-grey-900);
+            padding: var(--space-md) var(--space-lg);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .prototype-nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .prototype-nav-left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .prototype-nav-label {
+            color: var(--frank-grey-300);
+            font-size: 14px;
+        }
+        
+        .prototype-nav-buttons {
+            display: flex;
+            gap: var(--space-sm);
+        }
+        
+        .prototype-btn {
+            background: transparent;
+            border: 2px solid var(--frank-grey-700);
+            color: var(--frank-white);
+            padding: var(--space-sm) var(--space-md);
+            font-family: var(--font-stack);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        
+        .prototype-btn:hover {
+            border-color: var(--frank-grey-300);
+        }
+        
+        .prototype-btn.active {
+            background: var(--frank-pink);
+            border-color: var(--frank-pink);
+        }
+        
+        .prototype-btn:focus {
+            outline: 3px solid var(--frank-pink);
+            outline-offset: 2px;
+        }
+        
+        .prototype-info {
+            color: var(--frank-grey-300);
+            font-size: 13px;
+        }
+        
+        /* Prototype visibility */
+        .prototype {
+            display: none;
+        }
+        
+        .prototype.active {
+            display: block;
+        }
+        
+        /* ===========================================
+           SHARED: CONTAINERS
+           =========================================== */
+        
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+        
+        .container--content {
+            max-width: var(--content-width);
+        }
+        
+        .container--readable {
+            max-width: var(--readable-width);
+        }
+        
+        /* ===========================================
+           SHARED: DESKTOP HEADER
+           Consistent with homepage desktop prototypes
+           =========================================== */
+        
+        .frank-header {
+            background: var(--frank-white);
+            border-bottom: 1px solid var(--frank-grey-200);
+            position: sticky;
+            top: 56px; /* Below prototype nav */
+            z-index: 100;
+        }
+        
+        .frank-header-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--nav-height);
+        }
+        
+        .frank-header-left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2xl);
+        }
+        
+        .frank-logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--frank-navy);
+            text-decoration: none;
+        }
+        
+        .frank-logo:hover {
+            text-decoration: none;
+        }
+        
+        .frank-logo:focus {
+            outline: 3px solid var(--frank-pink);
+            outline-offset: 4px;
+        }
+        
+        .frank-nav {
+            display: flex;
+            gap: var(--space-lg);
+        }
+        
+        .frank-nav a {
+            color: var(--frank-grey-700);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            padding: var(--space-xs) 0;
+            border-bottom: 3px solid transparent;
+            transition: all 0.15s ease;
+        }
+        
+        .frank-nav a:hover {
+            color: var(--frank-navy);
+            border-bottom-color: var(--frank-pink);
+        }
+        
+        .frank-nav a:focus {
+            outline: 3px solid var(--frank-pink);
+            outline-offset: 4px;
+        }
+        
+        .frank-nav a.active {
+            color: var(--frank-navy);
+            border-bottom-color: var(--frank-pink);
+        }
+        
+        .frank-header-right {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+        }
+        
+        .frank-header-search {
+            background: none;
+            border: 2px solid var(--frank-grey-200);
+            padding: var(--space-sm) var(--space-md);
+            cursor: pointer;
+            color: var(--frank-grey-700);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-family: var(--font-stack);
+            font-size: 15px;
+            transition: border-color 0.15s ease;
+        }
+        
+        .frank-header-search:hover {
+            border-color: var(--frank-navy);
+        }
+        
+        .frank-header-search:focus {
+            outline: 3px solid var(--frank-pink);
+            outline-offset: 2px;
+        }
+        
+        .frank-header-phone {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            background: var(--frank-pink);
+            color: var(--frank-white);
+            padding: var(--space-sm) var(--space-md);
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background 0.15s ease;
+        }
+        
+        .frank-header-phone:hover {
+            background: var(--frank-navy);
+        }
+        
+        .frank-header-phone:focus {
+            outline: 3px solid var(--frank-navy);
+            outline-offset: 2px;
+        }
+        
+        /* ===========================================
+           SHARED: BREADCRUMB
+           =========================================== */
+        
+        .frank-breadcrumb {
+            padding: var(--space-md) 0;
+            font-size: 15px;
+            color: var(--frank-grey-700);
+        }
+        
+        .frank-breadcrumb a {
+            color: var(--frank-grey-700);
+            font-size: 15px;
+        }
+        
+        .frank-breadcrumb-wrap {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            background: var(--frank-grey-100);
+        }
+        
+        /* ===========================================
+           SHARED: LINK ARROW
+           =========================================== */
+        
+        .frank-link-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--frank-navy);
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 3px;
+            transition: gap 0.15s ease;
+        }
+        
+        .frank-link-arrow:hover {
+            text-decoration-style: solid;
+            gap: 12px;
+        }
+        
+        .frank-link-arrow svg {
+            flex-shrink: 0;
+            transition: transform 0.15s ease;
+        }
+        
+        .frank-link-arrow:hover svg {
+            transform: translateX(2px);
+        }
+        
+        /* ===========================================
+           SHARED: DESKTOP FOOTER
+           =========================================== */
+        
+        .frank-footer {
+            background: var(--frank-navy);
+            color: var(--frank-white);
+            padding: var(--space-3xl) 0 var(--space-2xl);
+        }
+        
+        .frank-footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+        
+        .frank-footer-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: var(--space-2xl);
+            padding-bottom: var(--space-2xl);
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+        
+        .frank-footer-col h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--frank-pink);
+            margin-bottom: var(--space-md);
+        }
+        
+        .frank-footer-col a {
+            display: block;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            padding: var(--space-xs) 0;
+            font-size: 16px;
+            transition: color 0.15s ease;
+        }
+        
+        .frank-footer-col a:hover {
+            color: var(--frank-white);
+        }
+        
+        .frank-footer-col a:focus {
+            outline: 3px solid var(--frank-pink);
+            outline-offset: 2px;
+        }
+        
+        .frank-footer-contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            background: var(--frank-pink);
+            color: var(--frank-white);
+            padding: var(--space-sm) var(--space-lg);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: var(--space-md);
+            transition: background 0.15s ease;
+        }
+        
+        .frank-footer-contact-btn:hover {
+            background: var(--frank-white);
+            color: var(--frank-navy);
+        }
+        
+        .frank-footer-contact-btn:focus {
+            outline: 3px solid var(--frank-white);
+            outline-offset: 2px;
+        }
+        
+        .frank-footer-contact-text {
+            font-size: 15px;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .frank-footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--space-lg);
+        }
+        
+        .frank-footer-legal {
+            display: flex;
+            gap: var(--space-lg);
+        }
+        
+        .frank-footer-legal a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.15s ease;
+        }
+        
+        .frank-footer-legal a:hover {
+            color: var(--frank-white);
+        }
+        
+        .frank-footer-legal a:focus {
+            outline: 3px solid var(--frank-pink);
+            outline-offset: 2px;
+        }
+        
+        .frank-footer-crown {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        
+        
+        /* ===========================================
+           APPROACH B: STRESS-STATE REDESIGN
+           Desktop-optimised emergency layout
+           =========================================== */
+        
+        /* 
+           CRITICAL 999 BANNER
+           Full-bleed red at top of page. 
+           At desktop, use a 2-column layout: 
+           checklist on left, call action on right.
+        */
+        .approach-b .emergency-critical {
+            background: var(--frank-emergency);
+            color: var(--frank-white);
+            padding: var(--space-2xl) 0;
+        }
+        
+        .approach-b .emergency-critical-inner {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: var(--space-2xl);
+            align-items: start;
+        }
+        
+        .approach-b .emergency-critical-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .approach-b .emergency-critical-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--frank-white);
+        }
+        
+        .approach-b .emergency-critical-list {
+            margin-bottom: 0;
+        }
+        
+        .approach-b .emergency-critical-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            padding: var(--space-sm) 0;
+            font-size: 20px;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .approach-b .emergency-critical-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .approach-b .emergency-critical-list li svg {
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+        
+        /* Call action panel â€” sticky-feeling sidebar */
+        .approach-b .emergency-action-panel {
+            background: rgba(0,0,0,0.15);
+            padding: var(--space-lg);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+        
+        .approach-b .emergency-call-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            background: var(--frank-white);
+            color: var(--frank-emergency);
+            padding: var(--space-md) var(--space-lg);
+            font-size: 22px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+        
+        .approach-b .emergency-call-btn:hover {
+            background: var(--frank-grey-100);
+            transform: scale(1.02);
+        }
+        
+        .approach-b .emergency-call-btn:focus {
+            outline: 3px solid var(--frank-white);
+            outline-offset: 2px;
+        }
+        
+        .approach-b .emergency-reassurance {
+            font-size: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            opacity: 0.9;
+        }
+        
+        .approach-b .emergency-reassurance svg {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        /* 
+           SCRIPT + STEPS: 2-column layout at desktop
+           Script on the left, numbered steps on the right.
+           These are the two things a user needs simultaneously 
+           after calling 999.
+        */
+        .approach-b .action-grid {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+        }
+        
+        /* What to tell 999 */
+        .approach-b .script-section {
+            background: var(--frank-grey-100);
+            padding: var(--space-xl);
+            border-top: 4px solid var(--frank-navy);
+            align-self: start;
+        }
+        
+        .approach-b .script-section h3 {
+            font-size: 20px;
+            color: var(--frank-navy);
+            margin-bottom: var(--space-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .approach-b .script-box {
+            background: var(--frank-white);
+            border: 2px solid var(--frank-navy);
+            padding: var(--space-lg);
+            font-size: 19px;
+            line-height: 1.7;
+        }
+        
+        .approach-b .script-box .blank {
+            background: #fff3cd;
+            padding: 2px 10px;
+            border-bottom: 2px solid var(--frank-grey-700);
+            font-style: italic;
+            color: var(--frank-grey-700);
+        }
+        
+        /* While you wait steps */
+        .approach-b .steps-section {
+            padding: 0;
+        }
+        
+        .approach-b .steps-section h3 {
+            font-size: 20px;
+            color: var(--frank-navy);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .approach-b .step-item {
+            display: flex;
+            gap: var(--space-md);
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid var(--frank-grey-200);
+        }
+        
+        .approach-b .step-item:last-child {
+            border-bottom: none;
+        }
+        
+        .approach-b .step-number {
+            width: 36px;
+            height: 36px;
+            background: var(--frank-teal);
+            color: var(--frank-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+        
+        .approach-b .step-content {
+            flex: 1;
+        }
+        
+        .approach-b .step-content strong {
+            display: block;
+            font-size: 17px;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .approach-b .step-content p {
+            font-size: 16px;
+            color: var(--frank-grey-700);
+            margin: 0;
+        }
+        
+        /* 
+           SCENARIO CARDS
+           At desktop, display as a 3-column grid
+           rather than stacked accordions.
+        */
+        .approach-b .scenario-section {
+            background: var(--frank-grey-100);
+            padding: var(--space-2xl) 0;
+            border-top: 1px solid var(--frank-grey-200);
+            border-bottom: 1px solid var(--frank-grey-200);
+        }
+        
+        .approach-b .scenario-section-inner {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+        
+        .approach-b .scenario-section h3 {
+            font-size: 20px;
+            color: var(--frank-navy);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .approach-b .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+        }
+        
+        .approach-b .scenario-card {
+            background: var(--frank-white);
+            border: 1px solid var(--frank-grey-200);
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+        
+        .approach-b .scenario-card:hover {
+            border-color: var(--frank-grey-300);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .approach-b .scenario-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md) var(--space-lg);
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: var(--font-stack);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--frank-navy);
+        }
+        
+        .approach-b .scenario-header:hover {
+            background: var(--frank-grey-100);
+        }
+        
+        .approach-b .scenario-header:focus {
+            outline: 3px solid var(--frank-pink);
+            outline-offset: -3px;
+        }
+        
+        .approach-b .scenario-header svg {
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+        }
+        
+        .approach-b .scenario-card.open .scenario-header svg {
+            transform: rotate(180deg);
+        }
+        
+        .approach-b .scenario-content {
+            display: none;
+            padding: 0 var(--space-lg) var(--space-lg);
+            border-top: 1px solid var(--frank-grey-200);
+        }
+        
+        .approach-b .scenario-card.open .scenario-content {
+            display: block;
+        }
+        
+        .approach-b .scenario-content ul {
+            padding-left: var(--space-lg);
+            list-style: disc;
+            margin-top: var(--space-md);
+        }
+        
+        .approach-b .scenario-content li {
+            margin-bottom: var(--space-xs);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        /* 
+           RECOVERY POSITION
+           At desktop: steps on left, diagram on right
+        */
+        .approach-b .recovery-section {
+            padding: var(--space-2xl) 0;
+            background: var(--frank-white);
+        }
+        
+        .approach-b .recovery-section-inner {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+        
+        .approach-b .recovery-section h3 {
+            font-size: 24px;
+            color: var(--frank-navy);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .approach-b .recovery-section > .recovery-section-inner > p {
+            color: var(--frank-grey-700);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .approach-b .recovery-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: var(--space-2xl);
+            align-items: start;
+        }
+        
+        .approach-b .recovery-steps {
+            counter-reset: recovery-step;
+        }
+        
+        .approach-b .recovery-step {
+            display: flex;
+            gap: var(--space-md);
+            padding: var(--space-sm) 0;
+            align-items: flex-start;
+        }
+        
+        .approach-b .recovery-step::before {
+            counter-increment: recovery-step;
+            content: counter(recovery-step);
+            width: 32px;
+            height: 32px;
+            background: var(--frank-grey-200);
+            color: var(--frank-navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+        
+        .approach-b .recovery-step p {
+            font-size: 17px;
+            margin: 0;
+            padding-top: 4px;
+            line-height: 1.5;
+        }
+        
+        .approach-b .recovery-diagram {
+            padding: var(--space-lg);
+            background: var(--frank-grey-100);
+            text-align: center;
+            position: sticky;
+            top: 160px; /* Below both navs */
+        }
+        
+        .approach-b .recovery-diagram svg {
+            max-width: 280px;
+            height: auto;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .approach-b .recovery-diagram-images {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+        
+        .approach-b .recovery-diagram-images figure {
+            margin: 0;
+        }
+        
+        .approach-b .recovery-diagram-images img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .approach-b .recovery-diagram-images figcaption {
+            font-size: 14px;
+            color: var(--frank-grey-700);
+            margin-top: var(--space-xs);
+            font-weight: 600;
+        }
+        
+        .approach-b .recovery-diagram p {
+            font-size: 14px;
+            color: var(--frank-grey-700);
+        }
+        
+        .approach-b .recovery-nhs-link {
+            margin-top: var(--space-lg);
+        }
+        
+        /* 
+           AFTERCARE + TALK: 2-column at desktop
+           These sit side by side as complementary post-crisis support
+        */
+        .approach-b .post-emergency-grid {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+        }
+        
+        /* Aftercare */
+        .approach-b .aftercare-section {
+            padding: var(--space-xl);
+            background: var(--frank-success-bg);
+            border-top: 4px solid var(--frank-success);
+            align-self: start;
+        }
+        
+        .approach-b .aftercare-section h3 {
+            font-size: 20px;
+            color: var(--frank-success);
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .approach-b .aftercare-section > p {
+            margin-bottom: var(--space-lg);
+            font-size: 16px;
+        }
+        
+        .approach-b .aftercare-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            padding: var(--space-sm) 0;
+            font-size: 16px;
+        }
+        
+        .approach-b .aftercare-list li svg {
+            flex-shrink: 0;
+            margin-top: 3px;
+            color: var(--frank-success);
+        }
+        
+        .approach-b .aftercare-cta {
+            margin-top: var(--space-md);
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(0,112,60,0.2);
+        }
+        
+        /* Talk to someone */
+        .approach-b .talk-section {
+            padding: var(--space-xl);
+            background: var(--frank-grey-100);
+            border-top: 4px solid var(--frank-navy);
+            align-self: start;
+        }
+        
+        .approach-b .talk-section h3 {
+            font-size: 20px;
+            color: var(--frank-navy);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .approach-b .talk-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+        }
+        
+        .approach-b .talk-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: var(--space-lg);
+            background: var(--frank-white);
+            text-decoration: none;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.15s ease;
+        }
+        
+        .approach-b .talk-option:hover {
+            border-color: var(--frank-pink);
+            background: var(--frank-pink-light);
+        }
+        
+        .approach-b .talk-option:focus {
+            outline: 3px solid var(--frank-pink);
+            outline-offset: 2px;
+        }
+        
+        .approach-b .talk-option svg {
+            margin-bottom: var(--space-sm);
+            color: var(--frank-navy);
+        }
+        
+        .approach-b .talk-option strong {
+            display: block;
+            font-size: 16px;
+            color: var(--frank-navy);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .approach-b .talk-option span {
+            font-size: 14px;
+            color: var(--frank-grey-700);
+        }
+        
+        .approach-b .talk-confidential {
+            margin-top: var(--space-md);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--frank-white);
+            font-size: 15px;
+            color: var(--frank-grey-700);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .approach-b .talk-confidential svg {
+            flex-shrink: 0;
+            color: var(--frank-teal);
+        }
+
+        /* ===========================================
+           PRINT STYLES
+           Emergency content should be printable
+           =========================================== */
+        
+        @media print {
+            .prototype-nav,
+            .frank-header,
+            .frank-footer,
+            .skip-link {
+                display: none !important;
+            }
+            
+            body {
+                font-size: 14px;
+                color: #000;
+            }
+            
+            .approach-b .emergency-critical {
+                background: #fff !important;
+                color: #000 !important;
+                border: 3px solid #000;
+                padding: 20px;
+            }
+            
+            .approach-b .emergency-call-btn {
+                border: 2px solid #000;
+                color: #000 !important;
+            }
+            
+            .approach-b .scenario-content {
+                display: block !important;
+            }
+            
+            a[href^="tel:"]::after {
+                content: " (" attr(href) ")";
+            }
+        }
+
+        /* ===========================================
+           HIGH CONTRAST MODE
+           =========================================== */
+        
+        @media (forced-colors: active) {
+            .approach-b .emergency-critical {
+                border: 3px solid;
+            }
+            
+            .approach-b .emergency-call-btn {
+                border: 2px solid;
+            }
+            
+            .approach-b .step-number {
+                border: 2px solid;
+            }
+            
+            .approach-b .scenario-card {
+                border: 2px solid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- ===========================================
+         PROTOTYPE NAVIGATION
+         =========================================== -->
+    <nav class="prototype-nav" role="navigation" aria-label="Prototype selection">
+        <div class="prototype-nav-inner">
+            <div class="prototype-nav-left">
+                <span class="prototype-nav-label">View approach:</span>
+                <div class="prototype-nav-buttons">
+                    <button class="prototype-btn active" data-target="approach-b" aria-pressed="true">
+                        Recommended: Stress-State Redesign
+                    </button>
+                </div>
+            </div>
+            <span class="prototype-info">Desktop viewport Â· Emergency help page</span>
+        </div>
+    </nav>
+    
+    
+    
+    <!-- ===========================================
+         APPROACH B: STRESS-STATE REDESIGN
+         Desktop-optimised emergency layout
+         
+         KEY DESKTOP ADAPTATIONS:
+         â€” 999 banner: 2-column (checklist + call action)
+         â€” Script + steps: side by side
+         â€” Scenario cards: 3-column grid
+         â€” Recovery: steps + diagram side by side
+         â€” Aftercare + talk: 2-column post-crisis section
+         
+         The wider viewport lets us show more context 
+         simultaneously, reducing scrolling for users 
+         in crisis who need information quickly.
+         =========================================== -->
+    <div class="prototype approach-b active" id="approach-b">
+        
+        <!-- Desktop Header -->
+        <header class="frank-header">
+            <div class="frank-header-inner">
+                <div class="frank-header-left">
+                    <a href="#" class="frank-logo">FRANK</a>
+                    <nav class="frank-nav" aria-label="Main navigation">
+                        <a href="#">Drugs Aâ€“Z</a>
+                        <a href="#">Drug effects</a>
+                        <a href="#" class="active">Get help</a>
+                        <a href="#">News</a>
+                        <a href="#">About</a>
+                    </nav>
+                </div>
+                <div class="frank-header-right">
+                    <button class="frank-header-search" aria-label="Search drugs">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        Search
+                    </button>
+                    <a href="tel:03001236600" class="frank-header-phone">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                        0300 123 6600
+                    </a>
+                </div>
+            </div>
+        </header>
+        
+        <main id="main-content-b">
+            <!-- 
+                CRITICAL: 999 banner at absolute top of content.
+                No breadcrumb here â€” in a crisis, every pixel above 
+                the emergency content is wasted space. The breadcrumb
+                adds cognitive load for someone who arrived via search 
+                and just needs to know what to do RIGHT NOW.
+                
+                At desktop: 2-column layout puts the call button 
+                persistently visible alongside the checklist.
+            -->
+            <div class="emergency-critical" role="alert" aria-live="assertive">
+                <div class="emergency-critical-inner">
+                    <div class="emergency-critical-content">
+                        <div class="emergency-critical-header">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+                                <path d="M12 2L1 21h22L12 2zm0 3.83L19.53 19H4.47L12 5.83zM11 10v4h2v-4h-2zm0 6v2h2v-2h-2z"/>
+                            </svg>
+                            <h2>Call 999 NOW if they:</h2>
+                        </div>
+                        
+                        <ul class="emergency-critical-list">
+                            <li>
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Are unconscious or won't wake up
+                            </li>
+                            <li>
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Have difficulty breathing or stopped
+                            </li>
+                            <li>
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Have blue lips or fingertips
+                            </li>
+                            <li>
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Are having a seizure (fit)
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="emergency-action-panel">
+                        <a href="tel:999" class="emergency-call-btn">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                            Call 999
+                        </a>
+                        
+                        <div class="emergency-reassurance">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+                            </svg>
+                            <span>Ambulance crews won't tell the police. Your safety comes first.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 
+                Script + Steps: side by side at desktop.
+                After calling 999, the user needs both of these 
+                things simultaneously â€” what to say on the phone 
+                AND what to do while waiting.
+            -->
+            <div class="action-grid">
+                <!-- What to tell 999 -->
+                <div class="script-section">
+                    <h3>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        What to tell the 999 operator
+                    </h3>
+                    <div class="script-box">
+                        "I need an ambulance. My friend has taken <span class="blank">drug name</span> and they are <span class="blank">describe symptoms</span>. We are at <span class="blank">your location</span>."
+                    </div>
+                </div>
+                
+                <!-- While you wait -->
+                <div class="steps-section">
+                    <h3>While you wait for the ambulance</h3>
+                    
+                    <div class="step-item">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <strong>Stay with them</strong>
+                            <p>Don't leave them alone, even for a moment</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <strong>Keep them calm</strong>
+                            <p>Speak softly, don't shout or shake them</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <strong>If unconscious: recovery position</strong>
+                            <p>Lie them on their side so they can breathe</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <span class="step-number">4</span>
+                        <div class="step-content">
+                            <strong>Gather any drugs left over</strong>
+                            <p>Give them to the ambulance crew â€” it helps treatment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 
+                Scenario cards: 3-column at desktop.
+                These are non-emergency situations so can 
+                remain as expandable details.
+            -->
+            <div class="scenario-section">
+                <div class="scenario-section-inner">
+                    <h3>What to do in specific situations</h3>
+                    
+                    <div class="scenario-grid">
+                        <div class="scenario-card">
+                            <button class="scenario-header" aria-expanded="false">
+                                <span>If they're panicking or hallucinating</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"/>
+                                </svg>
+                            </button>
+                            <div class="scenario-content">
+                                <ul>
+                                    <li>Move them to a quiet, calm space</li>
+                                    <li>Keep them away from bright lights and loud noise</li>
+                                    <li>Speak calmly and reassuringly</li>
+                                    <li>Encourage slow, deep breaths</li>
+                                    <li>Stay with them until they feel better</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="scenario-card">
+                            <button class="scenario-header" aria-expanded="false">
+                                <span>If they're overheating</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"/>
+                                </svg>
+                            </button>
+                            <div class="scenario-content">
+                                <ul>
+                                    <li>Move them somewhere cool</li>
+                                    <li>Remove excess clothing</li>
+                                    <li>Sip water slowly (not too fast)</li>
+                                    <li>Fan them or use a cool cloth</li>
+                                    <li>Call 999 if temperature doesn't drop</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="scenario-card">
+                            <button class="scenario-header" aria-expanded="false">
+                                <span>If they're drowsy and hard to wake</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"/>
+                                </svg>
+                            </button>
+                            <div class="scenario-content">
+                                <ul>
+                                    <li>Keep them sitting up if possible</li>
+                                    <li>Talk to them to keep them awake</li>
+                                    <li><strong>Don't</strong> give them coffee</li>
+                                    <li><strong>Don't</strong> put them in a cold bath</li>
+                                    <li>If you can't wake them: call 999 immediately</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 
+                Recovery position: steps + diagram side by side.
+                Diagram is sticky so it stays visible while 
+                reading the steps.
+            -->
+            <div class="recovery-section">
+                <div class="recovery-section-inner">
+                    <h3>Recovery position</h3>
+                    <p style="color: var(--frank-grey-700); margin-bottom: var(--space-lg);">Use this if someone is unconscious but breathing.</p>
+                    
+                    <div class="recovery-layout">
+                        <div>
+                            <div class="recovery-steps">
+                                <div class="recovery-step">
+                                    <p>Tilt their head back and lift their chin to open the airway</p>
+                                </div>
+                                <div class="recovery-step">
+                                    <p>Lie them on their side with their legs straight</p>
+                                </div>
+                                <div class="recovery-step">
+                                    <p>Place their nearest arm at right angles to their body</p>
+                                </div>
+                                <div class="recovery-step">
+                                    <p>Pull the far leg up and roll them towards you</p>
+                                </div>
+                                <div class="recovery-step">
+                                    <p>Tilt head back to keep airway open</p>
+                                </div>
+                            </div>
+                            
+                            <p class="recovery-nhs-link">
+                                <a href="https://www.nhs.uk/conditions/first-aid/recovery-position/" class="frank-link-arrow" target="_blank" rel="noopener">
+                                    NHS video guide to recovery position
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                                    </svg>
+                                </a>
+                            </p>
+                        </div>
+                        
+                        <div class="recovery-diagram">
+                            <div class="recovery-diagram-images">
+                                <figure>
+                                    <img src="recovery-1.jpg" alt="Step 1: Positioning the person on their back with their airway open, placing their nearest arm at right angles" loading="lazy">
+                                    <figcaption>Step 1: Position and open airway</figcaption>
+                                </figure>
+                                <figure>
+                                    <img src="recovery-2.jpg" alt="Step 2: Rolling the person onto their side by pulling the far leg up and rolling them towards you" loading="lazy">
+                                    <figcaption>Step 2: Roll onto their side</figcaption>
+                                </figure>
+                                <figure>
+                                    <img src="recovery-3.jpg" alt="The completed recovery position: person lying on their side with head tilted back and upper leg bent at right angle to keep them stable" loading="lazy">
+                                    <figcaption>Recovery position</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 
+                Aftercare + Talk: 2-column post-crisis support.
+                These are both "what happens next" content and 
+                sit naturally side by side.
+            -->
+            <div class="post-emergency-grid">
+                <!-- Aftercare -->
+                <div class="aftercare-section">
+                    <h3>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        After the emergency
+                    </h3>
+                    <p>It's normal to feel shaky, anxious or drained after helping someone. Here's what to expect:</p>
+                    
+                    <ul class="aftercare-list">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span><strong>You may feel anxious for a few hours</strong> â€” this is normal and will pass</span>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span><strong>Drink water and eat something</strong> when you feel able</span>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span><strong>Talk to someone</strong> about what happened â€” don't bottle it up</span>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span><strong>Rest when you can</strong> â€” your body needs time to recover too</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="aftercare-cta">
+                        <a href="#" class="frank-link-arrow">
+                            If you're still feeling worried, talk to us
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Talk to someone -->
+                <div class="talk-section">
+                    <h3>Need to talk it through?</h3>
+                    
+                    <div class="talk-options">
+                        <a href="tel:03001236600" class="talk-option">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            <strong>Call us</strong>
+                            <span>0300 123 6600</span>
+                        </a>
+                        <a href="#" class="talk-option">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            <strong>Live chat</strong>
+                            <span>Online now</span>
+                        </a>
+                    </div>
+                    
+                    <div class="talk-confidential">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+                        </svg>
+                        <span>Everything you tell us is confidential. We're here to help, not judge.</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Desktop Footer -->
+        <footer class="frank-footer">
+            <div class="frank-footer-inner">
+                <div class="frank-footer-top">
+                    <div class="frank-footer-col">
+                        <h4>About drugs</h4>
+                        <a href="#">Drugs Aâ€“Z</a>
+                        <a href="#">Drug effects</a>
+                        <a href="#">Drug mixing</a>
+                        <a href="#">Worried about someone</a>
+                    </div>
+                    <div class="frank-footer-col">
+                        <h4>Get help</h4>
+                        <a href="#">What to do in an emergency</a>
+                        <a href="#">Find local services</a>
+                        <a href="#">Your stories</a>
+                        <a href="#">Support for parents</a>
+                    </div>
+                    <div class="frank-footer-col">
+                        <h4>About FRANK</h4>
+                        <a href="#">About us</a>
+                        <a href="#">News</a>
+                        <a href="#">Contact us</a>
+                    </div>
+                    <div class="frank-footer-col">
+                        <h4>Talk to us</h4>
+                        <a href="tel:03001236600" class="frank-footer-contact-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                            0300 123 6600
+                        </a>
+                        <p class="frank-footer-contact-text">Text 82111 Â· Live chat Â· Email</p>
+                        <p class="frank-footer-contact-text">Daily 2pmâ€“6pm, confidential</p>
+                    </div>
+                </div>
+                <div class="frank-footer-bottom">
+                    <div class="frank-footer-legal">
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Accessibility</a>
+                        <a href="#">Cookies</a>
+                        <a href="#">Feedback</a>
+                    </div>
+                    <span class="frank-footer-crown">Â© Crown copyright</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- ===========================================
+         JAVASCRIPT
+         =========================================== -->
+    <script>
+        
+        
+        // Scenario card toggles
+        document.querySelectorAll('.scenario-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const card = header.closest('.scenario-card');
+                const isOpen = card.classList.contains('open');
+                
+                // Toggle this card
+                if (isOpen) {
+                    card.classList.remove('open');
+                    header.setAttribute('aria-expanded', 'false');
+                } else {
+                    card.classList.add('open');
+                    header.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
