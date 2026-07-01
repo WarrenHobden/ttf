@@ -825,7 +825,10 @@
             background: var(--frank-grey-100);
             text-align: center;
         }
-        .recovery-diagram svg { max-width: 240px; height: auto; }
+        .recovery-diagram-images { display: flex; flex-direction: column; gap: var(--space-md); }
+        .recovery-diagram-images figure { margin: 0; }
+        .recovery-diagram-images img { width: 100%; height: auto; display: block; background: var(--frank-white); }
+        .recovery-diagram-images figcaption { font-size: 14px; color: var(--frank-grey-700); margin-top: var(--space-xs); font-weight: 600; }
         .recovery-diagram p { font-size: 13px; color: var(--frank-grey-700); margin-top: var(--space-sm); }
         @media (min-width: 768px) {
             .recovery-section { padding: var(--space-2xl) var(--space-lg); }
