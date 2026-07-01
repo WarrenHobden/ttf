@@ -27,27 +27,29 @@
         }
 
         :root {
-            /* Core palette */
-            --frank-navy: #0b3954;
-            --frank-pink: #e6007e;
-            --frank-pink-light: #fce8f3;
-            --frank-teal: #00a3a5;
+            /* Core palette — aligned to the design-patterns system */
+            --frank-navy: #0E3944;          /* deep-teal: dark surfaces, headings, chrome links, logo */
+            --frank-teal: #235461;          /* secondary dark: step counters, top borders, icons */
+            --frank-blue: #0072EE;          /* in-content links, primary interactive */
+            --frank-pink: #D10058;          /* readable pink: CTA, focus, borders, warning bar */
+            --frank-pink-display: #FC016A;  /* vivid pink: large display fill only (hero) */
+            --frank-pink-light: #FFEEF5;    /* pink tint: soft callout / hover backgrounds */
 
             /* Semantic colours */
-            --frank-emergency: #d4351c;
-            --frank-emergency-dark: #b82e19;
-            --frank-emergency-bg: #fef3f1;
-            --frank-warning-bg: #e6007e;
-            --frank-success: #00703c;
+            --frank-emergency: #DC3545;     /* crisis red: 999 banner, safety panel, danger tags */
+            --frank-emergency-dark: #C82333;/* red hover */
+            --frank-emergency-bg: #FDECEE;  /* light-red wash for red panels */
+            --frank-warning-bg: #D10058;    /* drug-warning bar (white text stays AA) */
+            --frank-success: #00703c;       /* readable green — design green is fill-only, kept for text */
             --frank-success-bg: #e8f5ee;
 
             /* Neutrals */
-            --frank-white: #ffffff;
-            --frank-grey-100: #f8f8f8;
-            --frank-grey-200: #e8e8e8;
-            --frank-grey-300: #b1b4b6;
-            --frank-grey-700: #505a5f;
-            --frank-grey-900: #1a1a1a;
+            --frank-white: #FFFFFF;
+            --frank-grey-100: #F0F4F5;      /* page / section wash (--light) */
+            --frank-grey-200: #E5E9EA;      /* subtle dividers (--rule-white) */
+            --frank-grey-300: #ADB5BD;      /* borders (--line) */
+            --frank-grey-700: #4A4A4A;      /* body / secondary text (--body) */
+            --frank-grey-900: #0B0C0C;      /* ink: headings, proto-bar bg */
 
             /* Typography */
             --font-body: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -93,7 +95,7 @@
         img { max-width: 100%; height: auto; }
 
         a {
-            color: var(--frank-navy);
+            color: var(--frank-blue);
             text-decoration: underline;
             text-decoration-style: dotted;
             text-underline-offset: 3px;
@@ -321,7 +323,7 @@
            HERO
            =========================================== */
         .frank-hero {
-            background: var(--frank-pink);
+            background: var(--frank-pink-display);
             padding: var(--space-xl) var(--space-md);
             position: relative;
             overflow: hidden;
@@ -452,7 +454,7 @@
             display: inline-flex;
             align-items: center;
             gap: var(--space-xs);
-            color: var(--frank-navy);
+            color: var(--frank-blue);
             font-weight: 600;
             text-decoration: underline;
             text-decoration-style: dotted;
@@ -474,8 +476,8 @@
            EMERGENCY CALLOUT (homepage) — always prominent
            =========================================== */
         .frank-emergency {
-            background: var(--frank-emergency-bg);
-            border: 2px solid var(--frank-emergency);
+            background: var(--frank-pink-light);
+            border: 2px solid var(--frank-pink);
             padding: var(--space-md);
             margin: var(--space-md);
         }
@@ -485,8 +487,8 @@
             gap: var(--space-sm);
             margin-bottom: var(--space-sm);
         }
-        .frank-emergency-icon { color: var(--frank-emergency); flex-shrink: 0; }
-        .frank-emergency h3 { font-size: 18px; color: var(--frank-emergency); }
+        .frank-emergency-icon { color: var(--frank-pink); flex-shrink: 0; }
+        .frank-emergency h3 { font-size: 18px; color: var(--frank-pink); }
         .frank-emergency p { font-size: 15px; margin-bottom: var(--space-sm); }
         @media (min-width: 768px) {
             .frank-emergency {
@@ -546,6 +548,7 @@
             border-top: 1px solid var(--frank-grey-200);
         }
         .frank-footer-inner { max-width: var(--max-width); margin: 0 auto; }
+        .frank-footer a { color: var(--frank-navy); } /* footer links stay deep-teal (chrome), not blue */
         .frank-footer-top {
             display: grid;
             grid-template-columns: 1fr;
