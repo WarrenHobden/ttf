@@ -797,7 +797,8 @@
         .recovery-diagram p { font-size: 13px; color: var(--frank-grey-700); margin-top: var(--space-sm); }
         @media (min-width: 768px) {
             .recovery-section { padding: var(--space-2xl) var(--space-lg); }
-            .recovery-layout { display: grid; grid-template-columns: 1fr 320px; gap: var(--space-2xl); align-items: start; }
+            .recovery-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: start; }
+            .recovery-steps { padding-right: var(--space-xl); }
             .recovery-diagram { margin-top: 0; }
         }
 
