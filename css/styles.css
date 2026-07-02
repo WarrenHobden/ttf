@@ -519,7 +519,7 @@
             border-bottom: 1px solid var(--frank-grey-200);
         }
         .frank-footer-contact h3 { font-size: 18px; color: var(--frank-navy); margin-bottom: var(--space-md); }
-        .frank-footer-phone {
+        .frank-footer a.frank-footer-phone {
             display: inline-flex;
             align-items: center;
             gap: var(--space-sm);
@@ -531,7 +531,8 @@
             text-decoration: none;
             margin-bottom: var(--space-md);
         }
-        .frank-footer-phone:hover { background: var(--frank-navy); text-decoration: none; }
+        .frank-footer a.frank-footer-phone:hover { background: var(--frank-navy); text-decoration: none; }
+        .frank-footer-phone svg { color: var(--frank-white); } /* icon uses fill=currentColor */
         .frank-footer-contact-links { display: flex; flex-wrap: wrap; gap: var(--space-md) var(--space-lg); font-size: 15px; }
         .frank-footer-nav { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
         .frank-footer-nav-section h4 {
@@ -788,7 +789,6 @@
             margin-top: var(--space-lg);
             padding: var(--space-md);
             background: var(--frank-grey-100);
-            text-align: center;
         }
         .recovery-diagram-images { display: flex; flex-direction: column; gap: var(--space-md); }
         .recovery-diagram-images figure { margin: 0; }
