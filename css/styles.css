@@ -964,6 +964,9 @@
         .drug-section { padding: var(--space-lg) 0; border-top: 1px solid var(--frank-grey-200); }
         .drug-section h2 { font-size: 24px; color: var(--frank-navy); margin-bottom: var(--space-md); }
         .drug-section p { margin-bottom: var(--space-md); max-width: 70ch; }
+        .drug-image { margin: 0 0 var(--space-md); max-width: 70ch; }
+        .drug-image img { width: 100%; height: auto; display: block; }
+        .drug-image figcaption { font-size: 13px; color: var(--frank-grey-700); margin-top: var(--space-xs); }
         .bullet-list { list-style: none; margin-bottom: var(--space-md); max-width: 70ch; }
         .bullet-list li { display: flex; gap: var(--space-sm); padding: var(--space-xs) 0; }
         .bullet-list li::before { content: ""; flex-shrink: 0; width: 6px; height: 6px; margin-top: 9px; background: var(--frank-navy); border-radius: 50%; }
