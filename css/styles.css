@@ -919,20 +919,17 @@
         .drug-also-known strong { color: var(--frank-grey-900); }
         .drug-standfirst { font-size: 19px; margin-top: var(--space-md); max-width: 60ch; }
         @media (min-width: 768px) { .drug-standfirst { font-size: 22px; } }
-        .drug-meta { font-size: 14px; color: var(--frank-grey-700); margin-top: var(--space-md); }
 
-        .at-a-glance { border: 2px solid var(--frank-grey-200); background: var(--frank-grey-100); margin-bottom: var(--space-lg); }
-        .at-a-glance h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--frank-grey-700); padding: var(--space-md) var(--space-md) 0; }
-        .glance-grid { display: grid; grid-template-columns: 1fr; }
-        .glance-item { padding: var(--space-md); border-top: 1px solid var(--frank-grey-200); }
-        .glance-item:first-child { border-top: none; }
-        .glance-item .label { display: block; font-size: 13px; font-weight: 700; color: var(--frank-grey-700); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
-        .glance-item .value { font-size: 16px; }
+        .quick-info { margin-bottom: var(--space-lg); }
+        .quick-info h2 { display: inline-block; background: var(--frank-navy); color: var(--frank-white); font-size: 20px; padding: var(--space-sm) var(--space-md); }
+        .quick-info-body { background: var(--frank-grey-100); padding: var(--space-md); }
+        .quick-info-intro { font-style: italic; color: var(--frank-grey-700); margin-bottom: var(--space-md); }
+        .quick-info-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); }
+        .quick-info-item h3 { font-size: 18px; color: var(--frank-pink); margin-bottom: var(--space-xs); }
+        .quick-info-item p { font-size: 16px; color: var(--frank-grey-900); margin-bottom: var(--space-sm); }
         @media (min-width: 560px) {
-            .glance-grid { grid-template-columns: 1fr 1fr; }
-            .glance-item { border-top: 1px solid var(--frank-grey-200); }
-            .glance-item:nth-child(-n+2) { border-top: none; }
-            .glance-item:nth-child(even) { border-left: 1px solid var(--frank-grey-200); }
+            .quick-info-body { padding: var(--space-lg); }
+            .quick-info-grid { grid-template-columns: 1fr 1fr; }
         }
 
         .jump-nav { margin-bottom: var(--space-lg); padding: var(--space-md); border: 1px solid var(--frank-grey-200); }
@@ -953,17 +950,12 @@
         .safety-call-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-sm); background: var(--frank-emergency); color: var(--frank-white); padding: var(--space-sm) var(--space-lg); font-size: 18px; font-weight: 700; text-decoration: none; align-self: flex-start; }
         .safety-call-btn:hover { background: var(--frank-emergency-dark); text-decoration: none; }
 
-        .mixing-module { border: 2px solid var(--frank-navy); margin-bottom: var(--space-lg); }
-        .mixing-module-header { background: var(--frank-navy); color: var(--frank-white); padding: var(--space-md); display: flex; align-items: center; gap: var(--space-sm); }
-        .mixing-module-header h2 { font-size: 18px; color: var(--frank-white); }
-        .mixing-module-body { padding: var(--space-md); }
-        .mixing-module-body p { margin-bottom: var(--space-md); }
-        .mixing-danger { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-bottom: var(--space-md); }
-        .mixing-tag { display: inline-flex; align-items: center; gap: var(--space-xs); background: var(--frank-emergency-bg); border: 1px solid var(--frank-emergency); color: var(--frank-emergency); font-weight: 700; font-size: 14px; padding: 6px 12px; }
 
         .drug-section { padding: var(--space-lg) 0; border-top: 1px solid var(--frank-grey-200); }
         .drug-section h2 { font-size: 24px; color: var(--frank-navy); margin-bottom: var(--space-md); }
         .drug-section p { margin-bottom: var(--space-md); max-width: 70ch; }
+        .drug-section h3, .accordion-panel h3 { font-size: 18px; color: var(--frank-navy); margin: var(--space-lg) 0 var(--space-sm); }
+        .drug-section h2 + h3, .accordion-panel > h3:first-child { margin-top: 0; }
         .drug-image { margin: 0 0 var(--space-md); max-width: 70ch; }
         .drug-image img { width: 100%; height: auto; display: block; }
         .drug-image figcaption { font-size: 13px; color: var(--frank-grey-700); margin-top: var(--space-xs); }

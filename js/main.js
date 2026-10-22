@@ -62,7 +62,7 @@
             });
 
             // Drug page: jump links open any targeted accordion, then scroll
-            document.querySelectorAll('.jump-nav a[href^="#"]').forEach(function (link) {
+            document.querySelectorAll('.jump-nav a[href^="#"], .quick-info a[href^="#"]').forEach(function (link) {
                 link.addEventListener('click', function (e) {
                     var target = document.getElementById(link.getAttribute('href').slice(1));
                     if (!target) return;
