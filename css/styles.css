@@ -910,6 +910,8 @@
         .frank-breadcrumb-inner--wide { max-width: var(--content-width); }
         .drug-main { max-width: var(--reading-width); margin: 0 auto; padding: 0 var(--space-md) var(--space-2xl); }
         .drug-section, .accordion { scroll-margin-top: 120px; }
+        /* Quick-info "Read more" target: sits one --space-lg below the 72px sticky header */
+        .jump-nav { scroll-margin-top: calc(72px + var(--space-lg)); }
 
         .drug-title-block { padding: var(--space-lg) 0; }
         .drug-class-tag { display: inline-block; background: var(--frank-navy); color: var(--frank-white); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 10px; margin-bottom: var(--space-sm); }
