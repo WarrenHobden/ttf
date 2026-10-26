@@ -927,6 +927,7 @@
         .quick-info-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); }
         .quick-info-item h3 { font-size: 18px; color: var(--frank-pink); margin-bottom: var(--space-xs); }
         .quick-info-item p { font-size: 16px; color: var(--frank-grey-900); margin-bottom: var(--space-sm); }
+        .quick-info-more { margin-top: var(--space-lg); }
         @media (min-width: 560px) {
             .quick-info-body { padding: var(--space-lg); }
             .quick-info-grid { grid-template-columns: 1fr 1fr; }
@@ -993,6 +994,14 @@
         .related-list { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
         .related-chip { display: inline-block; padding: 10px 16px; background: var(--frank-white); color: var(--frank-navy); font-weight: 700; font-size: 15px; text-decoration: none; border: 2px solid var(--frank-pink); }
         .related-chip:hover { background: var(--frank-pink); color: var(--frank-white); text-decoration: none; }
+
+        /* Page feedback ("Was this information useful?") */
+        .page-feedback { border-top: 1px solid var(--frank-grey-200); }
+        .page-feedback-inner { max-width: var(--reading-width); margin: 0 auto; padding: var(--space-xl) var(--space-md); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md) var(--space-lg); }
+        .page-feedback h2 { font-size: 20px; color: var(--frank-navy); margin: 0; }
+        .page-feedback-actions { display: flex; gap: var(--space-sm); }
+        .page-feedback-btn { min-width: 88px; padding: 10px 16px; background: var(--frank-white); color: var(--frank-navy); font-family: var(--font-body); font-weight: 700; font-size: 16px; border: 2px solid var(--frank-pink); cursor: pointer; }
+        .page-feedback-btn:hover, .page-feedback-btn[aria-pressed="true"] { background: var(--frank-pink); color: var(--frank-white); }
 
         /* ===========================================
            ACCESSIBILITY PREFERENCES

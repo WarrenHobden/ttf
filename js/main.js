@@ -75,6 +75,15 @@
                 });
             });
 
+            // Drug page: "Was this information useful?" — one answer selected at a time
+            document.querySelectorAll('.page-feedback-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    btn.closest('.page-feedback-actions').querySelectorAll('.page-feedback-btn').forEach(function (b) {
+                        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+                    });
+                });
+            });
+
             // Honour an initial hash (e.g. shared #emergency link)
             var initial = (location.hash || '').replace('#', '');
             if (initial && pages[initial]) { showPage(initial); }
