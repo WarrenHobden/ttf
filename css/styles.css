@@ -953,6 +953,13 @@
         .safety-call-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-sm); background: var(--frank-emergency); color: var(--frank-white); padding: var(--space-sm) var(--space-lg); font-size: 18px; font-weight: 700; text-decoration: none; align-self: flex-start; }
         .safety-call-btn:hover { background: var(--frank-emergency-dark); text-decoration: none; }
 
+        .mixing-module { border: 2px solid var(--frank-navy); margin-bottom: var(--space-lg); }
+        .mixing-module-header { background: var(--frank-navy); color: var(--frank-white); padding: var(--space-md); display: flex; align-items: center; gap: var(--space-sm); }
+        .mixing-module-header h2 { font-size: 18px; color: var(--frank-white); }
+        .mixing-module-body { padding: var(--space-md); }
+        .mixing-module-body p { margin-bottom: var(--space-md); }
+        .mixing-danger { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-bottom: var(--space-md); }
+        .mixing-tag { display: inline-flex; align-items: center; gap: var(--space-xs); background: var(--frank-emergency-bg); border: 1px solid var(--frank-emergency); color: var(--frank-emergency); font-weight: 700; font-size: 14px; padding: 6px 12px; }
 
         .drug-section { padding: var(--space-lg) 0; border-top: 1px solid var(--frank-grey-200); }
         .drug-section h2 { font-size: 24px; color: var(--frank-navy); margin-bottom: var(--space-md); }
